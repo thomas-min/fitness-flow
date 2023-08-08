@@ -1,9 +1,9 @@
 import { Platform, UIManager } from 'react-native';
-import { Divider } from '@/src/modules/common/components/Divider';
-import { WorkoutCalendar } from '@/src/modules/workout/components/WorkoutCalendar';
-import { WorkoutExerciseList } from '@/src/modules/workout/components/WorkoutExerciseList';
-import { WorkoutScreenContainer } from '@/src/modules/workout/components/WorkoutScreenContainer';
-import { WorkoutScreenHeader } from '@/src/modules/workout/components/WorkoutScreenHeader';
+import { Divider } from '@/modules/common/components/Divider';
+import { WorkoutCalendar } from '@/modules/workout/components/WorkoutCalendar';
+import { WorkoutExerciseList } from '@/modules/workout/components/WorkoutExerciseList';
+import { WorkoutScreenHeader } from '@/modules/workout/components/WorkoutScreenHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&
@@ -12,11 +12,11 @@ if (Platform.OS === 'android') {
 
 export default function WorkoutScreen() {
   return (
-    <WorkoutScreenContainer>
+    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
       <WorkoutScreenHeader />
       <WorkoutCalendar />
       <Divider />
       <WorkoutExerciseList />
-    </WorkoutScreenContainer>
+    </SafeAreaView>
   );
 }
