@@ -1,18 +1,7 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
-import Colors from '@/src/modules/common/configs/Colors';
-import { CalendarIcon, DumbbellIcon, LayoutListIcon } from 'lucide-react-native';
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+import { Tabs } from 'expo-router';
+import { useColorScheme } from 'react-native';
+import Colors from '@/modules/common/configs/Colors';
+import { CalendarIcon, DumbbellIcon, GanttChartIcon } from 'lucide-react-native';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -31,7 +20,15 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="routine"
+        options={{
+          headerShown: false,
+          title: '루틴',
+          tabBarIcon: ({ color }) => <GanttChartIcon color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="exercise"
         options={{
           headerShown: false,
           title: '운동',
