@@ -22,7 +22,7 @@ export function ExerciseItem({ exercise }: Props) {
       <Pressable
         onPress={() => removeExercise(exercise)}
         disabled={exerciseScreenMode === 'view'}
-        className={cn('active:opacity-70 p-2 rounded')}>
+        className={cn('active:opacity-50 p-2 rounded')}>
         {match(exerciseScreenMode)
           .with('view', () => <CheckCircle2Icon className="text-gray-900" size={16} />)
           .with('edit', () => <MinusCircle className="text-red-500" size={16} />)
@@ -35,7 +35,7 @@ export function ExerciseItem({ exercise }: Props) {
             `/edit-exercise?id=${exercise.id}&bodyPart=${exercise.bodyPart}&name=${exercise.name}`
           )
         }
-        className={cn('mr-1 active:opacity-70', {
+        className={cn('mr-2 active:opacity-50', {
           'opacity-0': exerciseScreenMode === 'view',
         })}
         disabled={exerciseScreenMode === 'view'}>

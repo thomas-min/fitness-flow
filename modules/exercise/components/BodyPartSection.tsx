@@ -30,7 +30,7 @@ export function BodyPartSection({ bodyPart }: Props) {
         <Pressable
           disabled={exerciseScreenMode === 'view'}
           onPress={handleAddExercise}
-          className={cn('active:opacity-70 p-2 rounded', {
+          className={cn('active:opacity-50 p-2 rounded', {
             'opacity-0': exerciseScreenMode === 'view',
           })}>
           <PlusIcon className="text-gray-700" size={16}></PlusIcon>

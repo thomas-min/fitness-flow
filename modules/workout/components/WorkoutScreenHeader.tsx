@@ -13,7 +13,7 @@ export const WorkoutScreenHeader = function WorkoutScreenHeader() {
       <Text className="text-xl font-bold">
         {format(currentDate, 'yyyy년 MM월', { locale: ko })}
       </Text>
-      <Pressable className="active:opacity-70 p-1 rounded">
+      <Pressable className="active:opacity-50 p-1 rounded">
         <PlusIcon className="text-gray-900" />
       </Pressable>
     </View>
