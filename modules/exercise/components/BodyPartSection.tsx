@@ -2,22 +2,26 @@ import { View, Text, Pressable } from 'react-native';
 import { TBodyPart } from '../models';
 import { BODY_PARTS_IN_KOREAN } from '../configs';
 import { Divider } from '@/modules/common/components/Divider';
-import { useExerciseModelActions, useExercisesByBodyPart } from '../hooks/useExerciseModelStore';
+import { useExercisesByBodyPart } from '../hooks/useExerciseModelStore';
 import { PlusIcon } from 'lucide-react-native';
 import { useExerciseScreenMode } from '../hooks/useExerciseViewStore';
 import { cn } from '@/modules/common/utils/cn';
-import { useEffect } from 'react';
 import { ExerciseItem } from './ExerciseItem';
+import { useRouter } from 'expo-router';
 
 interface Props {
   bodyPart: TBodyPart;
 }
 
 export function BodyPartSection({ bodyPart }: Props) {
+  const router = useRouter();
+
   const exerciseScreenMode = useExerciseScreenMode();
   const exercises = useExercisesByBodyPart(bodyPart);
 
-  const handleAddExercise = () => {};
+  const handleAddExercise = () => {
+    router.push(`/edit-exercise?bodyPart=${bodyPart}`);
+  };
 
   return (
     <View className="my-4">
@@ -26,7 +30,7 @@ export function BodyPartSection({ bodyPart }: Props) {
         <Pressable
           disabled={exerciseScreenMode === 'view'}
           onPress={handleAddExercise}
-          className={cn('active:bg-gray-100 p-2 rounded', {
+          className={cn('active:opacity-70 p-2 rounded', {
             'opacity-0': exerciseScreenMode === 'view',
           })}>
           <PlusIcon className="text-gray-700" size={16}></PlusIcon>
