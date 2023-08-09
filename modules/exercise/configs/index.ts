@@ -1,6 +1,14 @@
 import { IExercise, TBodyPart } from '../models';
 
-export const BODY_PARTS: TBodyPart[] = ['chest', 'back', 'shoulders', 'legs', 'arms', 'abs'];
+export const BODY_PARTS: TBodyPart[] = [
+  'chest',
+  'back',
+  'shoulders',
+  'legs',
+  'arms',
+  'abs',
+  'whole',
+];
 
 export const BODY_PARTS_IN_KOREAN: Record<TBodyPart, string> = {
   chest: '가슴',
@@ -9,6 +17,7 @@ export const BODY_PARTS_IN_KOREAN: Record<TBodyPart, string> = {
   legs: '다리',
   arms: '팔',
   abs: '복근',
+  whole: '전신',
 };
 
 export const DEFAULT_EXERCISES: Record<string, IExercise> = {
@@ -86,6 +95,27 @@ export const DEFAULT_EXERCISES: Record<string, IExercise> = {
     id: 'exercise-11',
     name: '크런치',
     bodyPart: 'abs',
+    unit: 'kg',
+    isDeleted: false,
+  },
+  'exercise-12': {
+    id: 'exercise-12',
+    name: '레그레이즈',
+    bodyPart: 'abs',
+    unit: 'kg',
+    isDeleted: false,
+  },
+  'exercise-13': {
+    id: 'exercise-13',
+    name: '클린앤저크',
+    bodyPart: 'whole',
+    unit: 'kg',
+    isDeleted: false,
+  },
+  'exercise-14': {
+    id: 'exercise-14',
+    name: '스내치',
+    bodyPart: 'whole',
     unit: 'kg',
     isDeleted: false,
   },

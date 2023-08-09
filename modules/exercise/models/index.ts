@@ -1,4 +1,4 @@
-export type TBodyPart = 'chest' | 'back' | 'shoulders' | 'legs' | 'arms' | 'abs';
+export type TBodyPart = 'chest' | 'back' | 'shoulders' | 'legs' | 'arms' | 'abs' | 'whole';
 
 export interface IExercise {
   id: string;
