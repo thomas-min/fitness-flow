@@ -1,16 +1,9 @@
 import { Tabs } from 'expo-router';
-import { useColorScheme } from 'react-native';
-import Colors from '@/modules/common/configs/Colors';
 import { CalendarIcon, DumbbellIcon, GanttChartIcon } from 'lucide-react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-      }}>
+    <Tabs>
       <Tabs.Screen
         name="index"
         options={{
