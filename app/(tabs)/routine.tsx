@@ -1,5 +1,8 @@
-import React from 'react';
-import { Platform, UIManager } from 'react-native';
+import { RoutineList } from '@/modules/routine/components/RoutineList';
+import { RoutineScreenHeader } from '@/modules/routine/components/RoutineScreenHeader';
+import { useRoutineModelActions } from '@/modules/routine/hooks/useRoutineModelStore';
+import React, { useEffect } from 'react';
+import { Platform, UIManager, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 if (Platform.OS === 'android') {
@@ -8,5 +11,18 @@ if (Platform.OS === 'android') {
 }
 
 export default function RoutineScreen() {
-  return <SafeAreaView className="flex-1 bg-white" edges={['top']}></SafeAreaView>;
+  const { seed } = useRoutineModelActions();
+
+  useEffect(() => {
+    seed();
+  }, [seed]);
+
+  return (
+    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
+      <RoutineScreenHeader />
+      <View className="flex-1">
+        <RoutineList />
+      </View>
+    </SafeAreaView>
+  );
 }
