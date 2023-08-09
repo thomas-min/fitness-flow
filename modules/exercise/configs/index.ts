@@ -21,86 +21,86 @@ export const BODY_PARTS_IN_KOREAN: Record<TBodyPart, string> = {
 };
 
 export const DEFAULT_EXERCISES: Record<string, IExercise> = {
-  'exercise-1': {
-    id: 'exercise-1',
+  'bench-press': {
+    id: 'bench-press',
     name: '벤치프레스',
     bodyPart: 'chest',
     unit: 'kg',
   },
-  'exercise-2': {
-    id: 'exercise-2',
+  squat: {
+    id: 'squat',
     name: '스쿼트',
     bodyPart: 'legs',
     unit: 'kg',
   },
-  'exercise-3': {
-    id: 'exercise-3',
+  'dead-lift': {
+    id: 'dead-lift',
     name: '데드리프트',
     bodyPart: 'legs',
     unit: 'kg',
   },
-  'exercise-4': {
-    id: 'exercise-4',
+  'overhead-press': {
+    id: 'overhead-press',
     name: '오버헤드프레스',
     bodyPart: 'shoulders',
     unit: 'kg',
   },
-  'exercise-5': {
-    id: 'exercise-5',
+  'barbel-row': {
+    id: 'barbel-row',
     name: '바벨로우',
     bodyPart: 'back',
     unit: 'kg',
   },
-  'exercise-6': {
-    id: 'exercise-6',
+  'pull-up': {
+    id: 'pull-up',
     name: '풀업',
     bodyPart: 'back',
     unit: 'kg',
   },
-  'exercise-7': {
-    id: 'exercise-7',
+  'push-up': {
+    id: 'push-up',
     name: '푸쉬업',
     bodyPart: 'chest',
     unit: 'kg',
   },
-  'exercise-8': {
-    id: 'exercise-8',
+  'side-lateral-raise': {
+    id: 'side-lateral-raise',
     name: '사이드레터럴레이즈',
     bodyPart: 'shoulders',
     unit: 'kg',
   },
-  'exercise-9': {
+  'barbel-curl': {
     id: 'exercise-9',
     name: '바벨컬',
     bodyPart: 'arms',
     unit: 'kg',
   },
-  'exercise-10': {
+  'skull-crusher': {
     id: 'exercise-10',
     name: '스컬크러셔',
     bodyPart: 'arms',
     unit: 'kg',
   },
-  'exercise-11': {
+  'ab-crunch': {
     id: 'exercise-11',
     name: '크런치',
     bodyPart: 'abs',
     unit: 'kg',
   },
-  'exercise-12': {
+  'leg-raise': {
     id: 'exercise-12',
     name: '레그레이즈',
     bodyPart: 'abs',
     unit: 'kg',
   },
-  'exercise-13': {
-    id: 'exercise-13',
+  'clean-and-jerk': {
+    id: 'clean-and-jerk',
     name: '클린앤저크',
     bodyPart: 'whole',
     unit: 'kg',
   },
-  'exercise-14': {
-    id: 'exercise-14',
+  snatch: {
+    id: 'snatch',
     name: '스내치',
     bodyPart: 'whole',
     unit: 'kg',
