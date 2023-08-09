@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { IExercise, TBodyPart } from '../models';
 import { persist } from 'zustand/middleware';
-import { isEmpty, uniqueId } from 'lodash-es';
+import { isEmpty } from 'lodash-es';
 import { DEFAULT_EXERCISES } from '../configs';
 
 interface IExerciseModelStore {
@@ -16,7 +16,7 @@ interface IExerciseModelStore {
   };
 }
 
-const useExerciseStore = create<IExerciseModelStore>()(
+const useExerciseModelStore = create<IExerciseModelStore>()(
   persist(
     (set, get) => ({
       exercises: {},
@@ -46,10 +46,17 @@ const useExerciseStore = create<IExerciseModelStore>()(
   )
 );
 
-export const useExercises = () => useExerciseStore((state) => Object.values(state.exercises));
-export const useExercise = (id: string) => useExerciseStore((state) => state.exercises[id]);
+export const useExerciseList = () =>
+  useExerciseModelStore((state) => Object.values(state.exercises));
+export const useExerciseObject = () => useExerciseModelStore((state) => state.exercises);
+
+export const useExerciseById = (id: string) =>
+  useExerciseModelStore((state) => state.exercises[id]);
+export const useExercisesByIds = (ids: string[]) =>
+  useExerciseModelStore((state) => ids.map((id) => state.exercises[id]));
 export const useExercisesByBodyPart = (bodyPart: TBodyPart) =>
-  useExerciseStore((state) =>
+  useExerciseModelStore((state) =>
     Object.values(state.exercises).filter((exercise) => exercise.bodyPart === bodyPart)
   );
-export const useExerciseModelActions = () => useExerciseStore((state) => state.actions);
+
+export const useExerciseModelActions = () => useExerciseModelStore((state) => state.actions);
