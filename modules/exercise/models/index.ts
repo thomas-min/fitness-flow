@@ -5,5 +5,5 @@ export interface IExercise {
   bodyPart: TBodyPart;
   name: string;
   unit: string;
-  isDeleted: boolean;
+  isDeleted?: boolean;
 }

@@ -1,7 +1,7 @@
 export interface IWorkout {
   id: string;
   date: Date;
-  isDeleted: boolean;
+  isDeleted?: boolean;
 }
 
 export interface IWorkoutSet {
@@ -10,5 +10,5 @@ export interface IWorkoutSet {
   exerciseId: string;
   setIndex: number;
   repetitionCount: number;
-  isDeleted: boolean;
+  isDeleted?: boolean;
 }
