@@ -51,7 +51,7 @@ export const useExerciseList = () =>
   useExerciseModelStore((state) => Object.values(state.exercises));
 export const useExerciseObject = () => useExerciseModelStore((state) => state.exercises);
 
-export const useExerciseById = (id: string) =>
+export const useExerciseById: (id: string) => IExercise | undefined = (id: string) =>
   useExerciseModelStore((state) => state.exercises[id]);
 export const useExercisesByIds = (ids: string[]) =>
   useExerciseModelStore((state) => ids.map((id) => state.exercises[id]));

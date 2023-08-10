@@ -33,9 +33,7 @@ export function ExerciseItem({ exercise }: Props) {
       <Text className="text-md flex-1">{exercise.name}</Text>
       <Pressable
         onPress={() =>
-          router.push(
-            `/edit-exercise?id=${exercise.id}&bodyPart=${exercise.bodyPart}&name=${exercise.name}`
-          )
+          router.push(`/edit-exercise?id=${exercise.id}&bodyPart=${exercise.bodyPart}`)
         }
         className={cn('mr-2 active:opacity-50', {
           'opacity-0': exerciseScreenMode === 'view',

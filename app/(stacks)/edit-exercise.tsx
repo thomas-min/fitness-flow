@@ -10,7 +10,10 @@ import { TextInput } from '@/modules/common/components/TextInput';
 import { cn } from '@/modules/common/utils/cn';
 import { uid } from '@/modules/common/utils/uid';
 import { BODY_PARTS_IN_KOREAN } from '@/modules/exercise/configs';
-import { useExerciseModelActions } from '@/modules/exercise/hooks/useExerciseModelStore';
+import {
+  useExerciseById,
+  useExerciseModelActions,
+} from '@/modules/exercise/hooks/useExerciseModelStore';
 import { TBodyPart } from '@/modules/exercise/models';
 
 if (Platform.OS === 'android') {
@@ -25,8 +28,10 @@ export default function EditExerciseScreen() {
 
   const { updateExercise, addExercise } = useExerciseModelActions();
 
-  const [name, setName] = useState(params.name?.toString() ?? '');
-  const [unit, setUnit] = useState('kg');
+  const exercise = useExerciseById(params.id?.toString() ?? '');
+
+  const [name, setName] = useState(exercise?.name ?? '');
+  const [unit, setUnit] = useState(exercise?.unit ?? '');
 
   const handleSubmit = () => {
     if (params.id) {
