@@ -22,13 +22,13 @@ export function ExerciseItem({ exercise }: Props) {
       <Pressable
         onPress={() => removeExercise(exercise)}
         disabled={exerciseScreenMode === 'view'}
-        className={cn('active:opacity-50 p-2 rounded')}>
+        className={cn('rounded p-2 active:opacity-50')}>
         {match(exerciseScreenMode)
           .with('view', () => <CheckCircle2Icon className="text-gray-900" size={16} />)
           .with('edit', () => <MinusCircle className="text-red-500" size={16} />)
           .exhaustive()}
       </Pressable>
-      <Text className="flex-1 text-md">{exercise.name}</Text>
+      <Text className="text-md flex-1">{exercise.name}</Text>
       <Pressable
         onPress={() =>
           router.push(

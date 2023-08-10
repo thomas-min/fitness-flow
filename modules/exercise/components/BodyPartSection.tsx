@@ -25,12 +25,12 @@ export function BodyPartSection({ bodyPart }: Props) {
 
   return (
     <View className="my-4">
-      <View className="flex-row mb-1 justify-between items-center">
-        <Text className="font-semibold ml-1 text-base">{BODY_PARTS_IN_KOREAN[bodyPart]}</Text>
+      <View className="mb-1 flex-row items-center justify-between">
+        <Text className="ml-1 text-base font-semibold">{BODY_PARTS_IN_KOREAN[bodyPart]}</Text>
         <Pressable
           disabled={exerciseScreenMode === 'view'}
           onPress={handleAddExercise}
-          className={cn('active:opacity-50 p-2 rounded', {
+          className={cn('rounded p-2 active:opacity-50', {
             'opacity-0': exerciseScreenMode === 'view',
           })}>
           <PlusIcon className="text-gray-700" size={16}></PlusIcon>

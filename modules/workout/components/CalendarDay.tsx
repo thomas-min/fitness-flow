@@ -17,7 +17,7 @@ export const CalendarDay: DayComponentType = ({
   return (
     <Pressable
       onPress={onDayPress}
-      className={clsx('h-8 w-8 m-2 rounded-full items-center justify-center active:opacity-50', {
+      className={clsx('m-2 h-8 w-8 items-center justify-center rounded-full active:opacity-50', {
         'bg-blue-500': isSelected,
       })}>
       <View className={clsx('h-1 w-1')} />

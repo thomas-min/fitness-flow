@@ -6,9 +6,9 @@ export const ExerciseScreenHeader = function WorkoutScreenHeader() {
   const { toggleMode } = useExerciseViewActions();
 
   return (
-    <View className="flex-row relative justify-center items-center px-4 pt-2">
-      <Text className="text-xl text-center font-bold">운동</Text>
-      <Pressable onPress={toggleMode} className="absolute right-4 active:opacity-50 p-2 rounded">
+    <View className="relative flex-row items-center justify-center px-4 pt-2">
+      <Text className="text-center text-xl font-bold">운동</Text>
+      <Pressable onPress={toggleMode} className="absolute right-4 rounded p-2 active:opacity-50">
         <Text className="text-gray-500">편집</Text>
       </Pressable>
     </View>

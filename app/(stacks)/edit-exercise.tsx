@@ -48,9 +48,9 @@ export default function EditExerciseScreen() {
   };
 
   return (
-    <SafeAreaView className="bg-white flex-1">
-      <View className="flex relative flex-row justify-center items-center">
-        <Pressable onPress={router.back} className="absolute left-4 p-1 active:opacity-50 rounded">
+    <SafeAreaView className="flex-1 bg-white">
+      <View className="relative flex flex-row items-center justify-center">
+        <Pressable onPress={router.back} className="absolute left-4 rounded p-1 active:opacity-50">
           <ArrowLeft className="text-gray-900" size={24} />
         </Pressable>
         <Text className="text-xl font-bold">운동 {params.id ? '수정' : '추가'}</Text>
@@ -71,14 +71,14 @@ export default function EditExerciseScreen() {
           <TextInput.Label>단위</TextInput.Label>
           <TextInput value={unit} onChangeText={setUnit} placeholder="운동의 단위를 입력하세요" />
         </ScrollView>
-        <View className="p-4 ios:pb-2">
+        <View className="ios:pb-2 p-4">
           <Pressable
             onPress={handleSubmit}
             disabled={!name}
-            className={cn('bg-blue-500 px-4 py-3 rounded-lg active:opacity-50', {
+            className={cn('rounded-lg bg-blue-500 px-4 py-3 active:opacity-50', {
               'opacity-50': !name,
             })}>
-            <Text className="text-white font-bold text-lg text-center">저장</Text>
+            <Text className="text-center text-lg font-bold text-white">저장</Text>
           </Pressable>
         </View>
       </KeyboardAvoidingView>

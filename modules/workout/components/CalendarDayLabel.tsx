@@ -6,7 +6,7 @@ import { DayLabelComponentType } from 'react-native-swipe-calendar';
 
 export const CalendarDayLabel: DayLabelComponentType = ({ date }) => {
   return (
-    <View className="h-8 w-8 mx-2 items-center justify-center">
+    <View className="mx-2 h-8 w-8 items-center justify-center">
       <Text className="text-gray-500">{format(date, 'EE', { locale: ko })}</Text>
     </View>
   );

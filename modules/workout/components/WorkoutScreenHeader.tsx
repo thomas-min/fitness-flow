@@ -9,11 +9,11 @@ export const WorkoutScreenHeader = function WorkoutScreenHeader() {
   const currentDate = useCalendarCurrentDate();
 
   return (
-    <View className="flex-row justify-between items-center px-4 pt-2">
+    <View className="flex-row items-center justify-between px-4 pt-2">
       <Text className="text-xl font-bold">
         {format(currentDate, 'yyyy년 MM월', { locale: ko })}
       </Text>
-      <Pressable className="active:opacity-50 p-1 rounded">
+      <Pressable className="rounded p-1 active:opacity-50">
         <PlusIcon className="text-gray-900" />
       </Pressable>
     </View>
