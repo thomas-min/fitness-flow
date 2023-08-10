@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isEmpty } from 'lodash-es';
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 import { DEFAULT_EXERCISES } from '../configs';
 import { IExercise, TBodyPart } from '../models';
@@ -41,7 +41,7 @@ const useExerciseModelStore = create<IExerciseModelStore>()(
     }),
     {
       name: 'exercise-model-store',
-      getStorage: () => AsyncStorage,
+      storage: createJSONStorage(() => AsyncStorage),
       partialize: (state) => ({ exercises: state.exercises }),
     }
   )

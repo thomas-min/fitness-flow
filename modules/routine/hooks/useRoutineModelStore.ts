@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isEmpty } from 'lodash-es';
 import { useMemo } from 'react';
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 import { DEFAULT_ROUTINES, DEFAULT_ROUTINE_EXERCISES } from '../configs';
 import { IRoutine, IRoutineExercise } from '../models';
@@ -59,7 +59,7 @@ const useRoutineModelStore = create<IRoutineModelStore>()(
     }),
     {
       name: 'routine-model-store',
-      getStorage: () => AsyncStorage,
+      storage: createJSONStorage(() => AsyncStorage),
       partialize: (state) => ({
         routines: state.routines,
         routineExercises: state.routineExercises,
