@@ -1,19 +1,31 @@
-import { IExercise } from '@/modules/exercise/models';
-import { useRoutines } from '../hooks/useRoutineModelStore';
-import { IRoutine } from '../models';
-import { View, Text, Pressable } from 'react-native';
-import { MenuIcon } from 'lucide-react-native';
-import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
+import { EqualIcon } from 'lucide-react-native';
 import { Fragment } from 'react';
+import { View, Text, Pressable } from 'react-native';
+import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
+
+import { useRoutineModelActions, useRoutines } from '../hooks/useRoutineModelStore';
+import { IRoutine } from '../models';
+
+import { IExercise } from '@/modules/exercise/models';
+
+const routineListStyles = {
+  container: {
+    flex: 1,
+  },
+};
 
 export function RoutineList() {
   const routines = useRoutines();
+  const { updateRoutineOrder } = useRoutineModelActions();
 
   return (
     <DraggableFlatList
-      containerStyle={{ flex: 1 }}
+      containerStyle={routineListStyles.container}
       data={routines}
-      renderItem={({ item, drag, isActive }) => (
+      onDragEnd={({ data }) => {
+        updateRoutineOrder(data);
+      }}
+      renderItem={({ item, drag }) => (
         <Item routine={item} exercises={item.exercises} drag={drag} />
       )}
       keyExtractor={(item) => item.id}
@@ -33,7 +45,7 @@ function Item({ routine, exercises, drag }: ItemProps) {
       <View className="p-4">
         <View className="flex-row items-center gap-4">
           <Pressable onLongPress={drag}>
-            <MenuIcon className="text-gray-800" />
+            <EqualIcon className="text-gray-800" />
           </Pressable>
           <Pressable className="flex-1 active:opacity-50">
             <Text className="text-lg font-bold">{routine.name}</Text>

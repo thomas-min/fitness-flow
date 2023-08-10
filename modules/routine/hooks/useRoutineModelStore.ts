@@ -1,11 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { create } from 'zustand';
-import { IRoutine, IRoutineExercise } from '../models';
-import { persist } from 'zustand/middleware';
-import { useMemo } from 'react';
-import { useExerciseObject } from '@/modules/exercise/hooks/useExerciseModelStore';
 import { isEmpty } from 'lodash-es';
+import { useMemo } from 'react';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
 import { DEFAULT_ROUTINES, DEFAULT_ROUTINE_EXERCISES } from '../configs';
+import { IRoutine, IRoutineExercise } from '../models';
+
+import { useExerciseObject } from '@/modules/exercise/hooks/useExerciseModelStore';
 
 interface IRoutineModelStore {
   routines: Record<string, IRoutine>;
@@ -15,6 +17,7 @@ interface IRoutineModelStore {
     addRoutine: (routine: IRoutine) => void;
     removeRoutine: (routine: IRoutine) => void;
     updateRoutine: (routine: IRoutine) => void;
+    updateRoutineOrder: (routines: IRoutine[]) => void;
   };
 }
 
@@ -42,6 +45,16 @@ const useRoutineModelStore = create<IRoutineModelStore>()(
           }),
         updateRoutine: (routine) =>
           set((state) => ({ routines: { ...state.routines, [routine.id]: routine } })),
+        updateRoutineOrder: (routines) =>
+          set(() => ({
+            routines: routines.reduce(
+              (acc, routine, index) => {
+                acc[routine.id] = { ...routine, order: index };
+                return acc;
+              },
+              {} as Record<string, IRoutine>
+            ),
+          })),
       },
     }),
     {
@@ -70,7 +83,7 @@ export const useRoutines = () => {
       }))
       .slice()
       .sort((a, b) => a.order - b.order);
-  }, []);
+  }, [routines, exercises, routineExercises]);
 
   return routinesWithExercises;
 };
