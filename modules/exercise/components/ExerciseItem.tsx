@@ -1,11 +1,13 @@
-import { Text, Pressable } from 'react-native';
-import { IExercise } from '../models';
-import { CheckCircle2Icon, MinusCircle, PencilIcon } from 'lucide-react-native';
-import { useExerciseScreenMode } from '../hooks/useExerciseViewStore';
-import { cn } from '@/modules/common/utils/cn';
-import { match } from 'ts-pattern';
-import { useExerciseModelActions } from '../hooks/useExerciseModelStore';
 import { useRouter } from 'expo-router';
+import { CheckCircle2Icon, MinusCircle, PencilIcon } from 'lucide-react-native';
+import { Text, Pressable } from 'react-native';
+import { match } from 'ts-pattern';
+
+import { useExerciseModelActions } from '../hooks/useExerciseModelStore';
+import { useExerciseScreenMode } from '../hooks/useExerciseViewStore';
+import { IExercise } from '../models';
+
+import { cn } from '@/modules/common/utils/cn';
 
 interface Props {
   exercise: IExercise;

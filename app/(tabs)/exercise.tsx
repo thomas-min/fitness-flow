@@ -1,13 +1,14 @@
+import { useNavigation } from 'expo-router';
 import React, { useEffect } from 'react';
 import { Platform, UIManager } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BODY_PARTS } from '@/modules/exercise/configs';
+
 import { BodyPartSection } from '@/modules/exercise/components/BodyPartSection';
 import { ExerciseScreenHeader } from '@/modules/exercise/components/ExerciseScreenHeader';
-import { ScrollView } from 'react-native-gesture-handler';
+import { BODY_PARTS } from '@/modules/exercise/configs';
 import { useExerciseModelActions } from '@/modules/exercise/hooks/useExerciseModelStore';
 import { useExerciseViewActions } from '@/modules/exercise/hooks/useExerciseViewStore';
-import { useNavigation } from 'expo-router';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&
@@ -25,7 +26,7 @@ export default function ExerciseScreen() {
       seed();
     });
     return unsubscribe;
-  }, []);
+  }, [navigation, seed, setMode]);
 
   return (
     <SafeAreaView className="flex-1 bg-white" edges={['top']}>

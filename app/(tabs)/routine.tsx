@@ -1,9 +1,10 @@
-import { RoutineList } from '@/modules/routine/components/RoutineList';
-import { RoutineScreenHeader } from '@/modules/routine/components/RoutineScreenHeader';
-import { useRoutineModelActions } from '@/modules/routine/hooks/useRoutineModelStore';
 import React, { useEffect } from 'react';
 import { Platform, UIManager, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { RoutineList } from '@/modules/routine/components/RoutineList';
+import { RoutineScreenHeader } from '@/modules/routine/components/RoutineScreenHeader';
+import { useRoutineModelActions } from '@/modules/routine/hooks/useRoutineModelStore';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&

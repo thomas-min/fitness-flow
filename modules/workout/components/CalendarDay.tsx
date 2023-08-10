@@ -1,8 +1,9 @@
+import clsx from 'clsx';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { DayComponentType, useCalendarContext } from 'react-native-swipe-calendar';
+
 import { useIsCalendarDateMarked } from '../hooks/useCalendarStore';
-import clsx from 'clsx';
 
 export const CalendarDay: DayComponentType = ({
   date,

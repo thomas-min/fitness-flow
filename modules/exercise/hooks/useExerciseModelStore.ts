@@ -1,9 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { create } from 'zustand';
-import { IExercise, TBodyPart } from '../models';
-import { persist } from 'zustand/middleware';
 import { isEmpty } from 'lodash-es';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
 import { DEFAULT_EXERCISES } from '../configs';
+import { IExercise, TBodyPart } from '../models';
 
 interface IExerciseModelStore {
   exercises: Record<string, IExercise>;

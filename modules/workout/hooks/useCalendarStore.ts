@@ -1,7 +1,8 @@
-import { LayoutAnimation } from 'react-native';
-import { create } from 'zustand';
 import { isSameDay, isSameMonth } from 'date-fns';
 import { useMemo } from 'react';
+import { LayoutAnimation } from 'react-native';
+import { create } from 'zustand';
+
 import { TODAY } from '../../common/configs/dateTime';
 
 interface ICalendarStore {

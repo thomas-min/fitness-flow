@@ -1,4 +1,5 @@
 import { TextInput as RNTextInput, TextInputProps, TextProps, Text } from 'react-native';
+
 import { cn } from '../utils/cn';
 
 function TextInput(props: TextInputProps) {

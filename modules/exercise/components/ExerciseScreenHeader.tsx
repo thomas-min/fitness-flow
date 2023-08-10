@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
+
 import { useExerciseViewActions } from '../hooks/useExerciseViewStore';
 
 export const ExerciseScreenHeader = function WorkoutScreenHeader() {

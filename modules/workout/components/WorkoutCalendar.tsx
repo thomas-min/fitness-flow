@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import { View } from 'react-native';
 import Calendar, { CalendarImperativeApi } from 'react-native-swipe-calendar';
+
 import { CalendarDay } from '@/modules/workout/components/CalendarDay';
 import { CalendarDayLabel } from '@/modules/workout/components/CalendarDayLabel';
 import { CalendarHeader } from '@/modules/workout/components/CalendarHeader';
@@ -10,7 +11,7 @@ import {
   useCalendarSelectedDate,
 } from '@/modules/workout/hooks/useCalendarStore';
 
-export const WorkoutCalendar = forwardRef<CalendarImperativeApi, {}>(
+export const WorkoutCalendar = forwardRef<CalendarImperativeApi, object>(
   function WorkoutCalendar(_, ref) {
     const currentDate = useCalendarCurrentDate();
     const selectedDate = useCalendarSelectedDate();

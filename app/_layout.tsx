@@ -2,10 +2,9 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
-import { useEffect } from 'react';
-
-import '../global.css';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
+import '../global.css';
 
 export {
   // Catch any errors thrown by the Layout component.

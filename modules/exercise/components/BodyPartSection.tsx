@@ -1,13 +1,15 @@
-import { View, Text, Pressable } from 'react-native';
-import { TBodyPart } from '../models';
-import { BODY_PARTS_IN_KOREAN } from '../configs';
-import { Divider } from '@/modules/common/components/Divider';
-import { useExercisesByBodyPart } from '../hooks/useExerciseModelStore';
-import { PlusIcon } from 'lucide-react-native';
-import { useExerciseScreenMode } from '../hooks/useExerciseViewStore';
-import { cn } from '@/modules/common/utils/cn';
-import { ExerciseItem } from './ExerciseItem';
 import { useRouter } from 'expo-router';
+import { PlusIcon } from 'lucide-react-native';
+import { View, Text, Pressable } from 'react-native';
+
+import { ExerciseItem } from './ExerciseItem';
+import { BODY_PARTS_IN_KOREAN } from '../configs';
+import { useExercisesByBodyPart } from '../hooks/useExerciseModelStore';
+import { useExerciseScreenMode } from '../hooks/useExerciseViewStore';
+import { TBodyPart } from '../models';
+
+import { Divider } from '@/modules/common/components/Divider';
+import { cn } from '@/modules/common/utils/cn';
 
 interface Props {
   bodyPart: TBodyPart;
@@ -33,11 +35,11 @@ export function BodyPartSection({ bodyPart }: Props) {
           className={cn('rounded p-2 active:opacity-50', {
             'opacity-0': exerciseScreenMode === 'view',
           })}>
-          <PlusIcon className="text-gray-700" size={16}></PlusIcon>
+          <PlusIcon className="text-gray-700" size={16} />
         </Pressable>
       </View>
       <Divider />
-      <View className="h-2"></View>
+      <View className="h-2" />
       {exercises.map((exercise) => (
         <ExerciseItem exercise={exercise} key={exercise.id} />
       ))}

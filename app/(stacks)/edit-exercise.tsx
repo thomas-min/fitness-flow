@@ -1,17 +1,17 @@
 import 'react-native-get-random-values';
-import { Platform, Pressable, UIManager, View, KeyboardAvoidingView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text } from 'react-native';
-import { ArrowLeft } from 'lucide-react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ArrowLeft } from 'lucide-react-native';
 import { useState } from 'react';
-import { BODY_PARTS_IN_KOREAN } from '@/modules/exercise/configs';
-import { TBodyPart } from '@/modules/exercise/models';
+import { Text, Platform, Pressable, UIManager, View, KeyboardAvoidingView } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { TextInput } from '@/modules/common/components/TextInput';
-import { useExerciseModelActions } from '@/modules/exercise/hooks/useExerciseModelStore';
 import { cn } from '@/modules/common/utils/cn';
 import { uid } from '@/modules/common/utils/uid';
+import { BODY_PARTS_IN_KOREAN } from '@/modules/exercise/configs';
+import { useExerciseModelActions } from '@/modules/exercise/hooks/useExerciseModelStore';
+import { TBodyPart } from '@/modules/exercise/models';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&
