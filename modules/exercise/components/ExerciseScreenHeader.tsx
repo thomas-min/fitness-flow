@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 
-import { useExerciseViewActions } from '../hooks/useExerciseViewStore';
+import { useExerciseViewActions } from '../hooks/useExerciseScreenStore';
 
 export const ExerciseScreenHeader = function WorkoutScreenHeader() {
   const { toggleMode } = useExerciseViewActions();
