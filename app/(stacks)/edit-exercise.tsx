@@ -1,20 +1,16 @@
-import 'react-native-get-random-values';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { ArrowLeft } from 'lucide-react-native';
-import { useState } from 'react';
-import { Text, Platform, Pressable, UIManager, View, KeyboardAvoidingView } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { KeyboardAvoidingView, Platform, Pressable, Text, UIManager, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import 'react-native-get-random-values';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { TextInput } from '@/modules/common/components/TextInput';
 import { cn } from '@/modules/common/utils/cn';
-import { uid } from '@/modules/common/utils/uid';
 import { BODY_PARTS_IN_KOREAN } from '@/modules/exercise/configs';
-import {
-  useExerciseById,
-  useExerciseModelActions,
-} from '@/modules/exercise/hooks/useExerciseModelStore';
-import { TBodyPart } from '@/modules/exercise/models';
+import { TBodyPart, exerciseRepository } from '@/modules/exercise/models';
+import { getExercise } from '@/modules/exercise/utils/sqlClient';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&
@@ -26,24 +22,37 @@ export default function EditExerciseScreen() {
   const params = useLocalSearchParams();
   const bodyPart = BODY_PARTS_IN_KOREAN[params.bodyPart as TBodyPart];
 
-  const { updateExercise, addExercise } = useExerciseModelActions();
+  const [name, setName] = useState('');
+  const [unit, setUnit] = useState('');
 
-  const exercise = useExerciseById(params.id?.toString() ?? '');
+  const fetchExercise = useCallback(async () => {
+    if (!params.id) {
+      setName('');
+      setUnit('');
+      return;
+    }
 
-  const [name, setName] = useState(exercise?.name ?? '');
-  const [unit, setUnit] = useState(exercise?.unit ?? '');
+    const found = await getExercise(+params.id);
+    if (!found) return;
+
+    setName(found.name);
+    setUnit(found.unit);
+  }, [params.id]);
+
+  useEffect(() => {
+    fetchExercise();
+  }, [fetchExercise]);
 
   const handleSubmit = () => {
     if (params.id) {
-      updateExercise({
-        id: params.id.toString(),
+      exerciseRepository.update({
+        id: +params.id,
         name,
         unit,
         bodyPart: params.bodyPart as TBodyPart,
       });
     } else {
-      addExercise({
-        id: uid(),
+      exerciseRepository.insert({
         name,
         unit,
         bodyPart: params.bodyPart as TBodyPart,
@@ -80,7 +89,7 @@ export default function EditExerciseScreen() {
           <Pressable
             onPress={handleSubmit}
             disabled={!name}
-            className={cn('rounded-lg bg-blue-500 px-4 py-3 active:opacity-50', {
+            className={cn('rounded-lg bg-black px-4 py-3 active:opacity-50', {
               'opacity-50': !name,
             })}>
             <Text className="text-center text-lg font-bold text-white">저장</Text>
