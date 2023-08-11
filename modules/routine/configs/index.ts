@@ -22,7 +22,7 @@ export const DEFAULT_ROUTINES: IRoutine[] = [
     position: 3,
   },
   {
-    id: 4,
+    id: 5,
     name: '3분할 하체',
     position: 4,
   },
