@@ -1,26 +1,25 @@
 import { useRouter } from 'expo-router';
 import { CheckCircle2Icon, MinusCircle, PencilIcon } from 'lucide-react-native';
-import { Text, Pressable } from 'react-native';
+import { Text, Pressable, View } from 'react-native';
 import { match } from 'ts-pattern';
 
-import { useExerciseModelActions } from '../hooks/useExerciseModelStore';
-import { useExerciseScreenMode } from '../hooks/useExerciseViewStore';
+import { useExerciseScreenMode } from '../hooks/useExerciseScreenStore';
 import { IExercise } from '../models';
 
 import { cn } from '@/modules/common/utils/cn';
 
 interface Props {
   exercise: IExercise;
+  removeExercise: (exercise: IExercise) => void;
 }
 
-export function ExerciseItem({ exercise }: Props) {
+export function ExerciseItem({ exercise, removeExercise }: Props) {
   const router = useRouter();
 
   const exerciseScreenMode = useExerciseScreenMode();
-  const { removeExercise } = useExerciseModelActions();
 
   return (
-    <Pressable className="flex-row items-center py-2">
+    <View className="flex-row items-center py-2">
       <Pressable
         onPress={() => removeExercise(exercise)}
         disabled={exerciseScreenMode === 'view'}
@@ -41,6 +40,6 @@ export function ExerciseItem({ exercise }: Props) {
         disabled={exerciseScreenMode === 'view'}>
         <PencilIcon className="text-gray-900" size={16} />
       </Pressable>
-    </Pressable>
+    </View>
   );
 }
