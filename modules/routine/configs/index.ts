@@ -1,116 +1,116 @@
 import { IRoutine, IRoutineExercise } from '../models';
 
-export const DEFAULT_ROUTINES: Record<string, IRoutine> = {
-  'strong-lift-a': {
-    id: 'strong-lift-a',
+export const DEFAULT_ROUTINES: IRoutine[] = [
+  {
+    id: 1,
     name: '스트롱 리프트 A',
-    order: 0,
+    position: 0,
   },
-  'strong-lift-b': {
-    id: 'strong-lift-b',
+  {
+    id: 2,
     name: '스트롱 리프트 B',
-    order: 1,
+    position: 1,
   },
-  'ppl-push': {
-    id: 'ppl-push',
+  {
+    id: 3,
     name: '3분할 가슴',
-    order: 2,
+    position: 2,
   },
-  'ppl-pull': {
-    id: 'ppl-pull',
+  {
+    id: 4,
     name: '3분할 등',
-    order: 3,
+    position: 3,
   },
-  'ppl-legs': {
-    id: 'ppl-legs',
+  {
+    id: 4,
     name: '3분할 하체',
-    order: 4,
+    position: 4,
   },
-};
+];
 
-export const DEFAULT_ROUTINE_EXERCISES: Record<string, IRoutineExercise> = {
-  'strong-lift-a-squat': {
-    id: 'strong-lift-a-squat',
-    routineId: 'strong-lift-a',
-    exerciseId: 'squat',
-    order: 0,
+export const DEFAULT_ROUTINE_EXERCISES: IRoutineExercise[] = [
+  {
+    id: 1,
+    routineId: 1,
+    exerciseId: 2,
+    position: 0,
   },
-  'strong-lift-a-bench-press': {
-    id: 'strong-lift-a-bench-press',
-    routineId: 'strong-lift-a',
-    exerciseId: 'bench-press',
-    order: 1,
+  {
+    id: 2,
+    routineId: 1,
+    exerciseId: 1,
+    position: 1,
   },
-  'strong-lift-a-barbel-row': {
-    id: 'strong-lift-a-barbel-row',
-    routineId: 'strong-lift-a',
-    exerciseId: 'barbel-row',
-    order: 2,
+  {
+    id: 3,
+    routineId: 1,
+    exerciseId: 5,
+    position: 2,
   },
-  'strong-lift-b-squat': {
-    id: 'strong-lift-b-squat',
-    routineId: 'strong-lift-b',
-    exerciseId: 'squat',
-    order: 0,
+  {
+    id: 4,
+    routineId: 2,
+    exerciseId: 2,
+    position: 0,
   },
-  'strong-lift-b-overhead-press': {
-    id: 'strong-lift-b-overhead-press',
-    routineId: 'strong-lift-b',
-    exerciseId: 'overhead-press',
-    order: 1,
+  {
+    id: 5,
+    routineId: 2,
+    exerciseId: 4,
+    position: 1,
   },
-  'strong-lift-b-dead-lift': {
-    id: 'strong-lift-b-dead-lift',
-    routineId: 'strong-lift-b',
-    exerciseId: 'dead-lift',
-    order: 2,
+  {
+    id: 6,
+    routineId: 2,
+    exerciseId: 3,
+    position: 2,
   },
-  'ppl-push-bench-press': {
-    id: 'ppl-push-bench-press',
-    routineId: 'ppl-push',
-    exerciseId: 'bench-press',
-    order: 0,
+  {
+    id: 7,
+    routineId: 3,
+    exerciseId: 1,
+    position: 0,
   },
-  'ppl-push-overhead-press': {
-    id: 'ppl-push-overhead-press',
-    routineId: 'ppl-push',
-    exerciseId: 'overhead-press',
-    order: 1,
+  {
+    id: 8,
+    routineId: 3,
+    exerciseId: 4,
+    position: 1,
   },
-  'ppl-push-skull-crusher': {
-    id: 'ppl-push-skull-crusher',
-    routineId: 'ppl-push',
-    exerciseId: 'skull-crusher',
-    order: 2,
+  {
+    id: 9,
+    routineId: 3,
+    exerciseId: 10,
+    position: 2,
   },
-  'ppl-pull-barbel-row': {
-    id: 'ppl-pull-barbel-row',
-    routineId: 'ppl-pull',
-    exerciseId: 'barbel-row',
-    order: 0,
+  {
+    id: 10,
+    routineId: 4,
+    exerciseId: 5,
+    position: 0,
   },
-  'ppl-pull-pull-up': {
-    id: 'ppl-pull-pull-up',
-    routineId: 'ppl-pull',
-    exerciseId: 'pull-up',
-    order: 1,
+  {
+    id: 11,
+    routineId: 4,
+    exerciseId: 6,
+    position: 1,
   },
-  'ppl-pull-barbel-curl': {
-    id: 'ppl-pull-barbel-curl',
-    routineId: 'ppl-pull',
-    exerciseId: 'barbel-curl',
-    order: 2,
+  {
+    id: 12,
+    routineId: 4,
+    exerciseId: 9,
+    position: 2,
   },
-  'ppl-legs-squat': {
-    id: 'ppl-legs-squat',
-    routineId: 'ppl-legs',
-    exerciseId: 'squat',
-    order: 0,
+  {
+    id: 13,
+    routineId: 5,
+    exerciseId: 2,
+    position: 0,
   },
-  'ppl-legs-dead-lift': {
-    id: 'ppl-legs-dead-lift',
-    routineId: 'ppl-legs',
-    exerciseId: 'dead-lift',
-    order: 1,
+  {
+    id: 14,
+    routineId: 5,
+    exerciseId: 3,
+    position: 1,
   },
-};
+];
