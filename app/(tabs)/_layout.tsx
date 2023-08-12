@@ -28,6 +28,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <DumbbellIcon color={color} />,
         }}
       />
+      <Tabs.Screen name="test" />
     </Tabs>
   );
 }
