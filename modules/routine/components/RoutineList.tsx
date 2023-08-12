@@ -5,7 +5,7 @@ import { Pressable, Text, View } from 'react-native';
 import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
 
 import { IRoutine, IRoutineWithExercises } from '../models';
-import { bulkUpdateRoutines, getRoutines } from '../utils/sql';
+import { bulkUpdateRoutines, getRoutines } from '../utils';
 
 import { IExercise } from '@/modules/exercise/models';
 
@@ -43,19 +43,17 @@ export function RoutineList() {
   }, []);
 
   return (
-    <>
-      <DraggableFlatList
-        containerStyle={routineListStyles.container}
-        data={routines}
-        onDragEnd={({ data }) => {
-          updateRoutineOrder(data);
-        }}
-        renderItem={({ item, drag }) => (
-          <Item routine={item} drag={drag} exercises={item.exercises} />
-        )}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    </>
+    <DraggableFlatList
+      containerStyle={routineListStyles.container}
+      data={routines}
+      onDragEnd={({ data }) => {
+        updateRoutineOrder(data);
+      }}
+      renderItem={({ item, drag }) => (
+        <Item routine={item} drag={drag} exercises={item.exercises} />
+      )}
+      keyExtractor={(item) => item.id.toString()}
+    />
   );
 }
 
