@@ -3,9 +3,11 @@ import { IQueryOptions } from 'expo-sqlite-orm';
 import {
   IRoutine,
   IRoutineExercise,
+  IRoutineSet,
   IRoutineWithExercises,
   routineExerciseRepository,
   routineRepository,
+  routineSetRepository,
 } from '../models';
 
 import { exerciseRepository } from '@/modules/exercise/models';
@@ -52,6 +54,20 @@ export async function getRoutines(query?: IQueryOptions<IRoutine>) {
   return routineWithExercises;
 }
 
+export async function getRoutine(id: number) {
+  const routine = await routineRepository.find(id);
+  if (!routine || routine.isDeleted) return null;
+
+  const routineExercises = await routineExerciseRepository.query({
+    where: { routineId: { equals: id }, isDeleted: { equals: false } },
+  });
+  const exercises = await exerciseRepository.query({
+    where: { id: { in: routineExercises.map((re) => re.exerciseId) } },
+  });
+
+  return { ...routine, exercises };
+}
+
 export async function updateRoutine(routine: IRoutineWithExercises) {
   const _routine = await routineRepository.update(routine);
   const _routineExercises: Omit<IRoutineExercise, 'id'>[] = routine.exercises.map(
@@ -72,4 +88,11 @@ export async function updateRoutine(routine: IRoutineWithExercises) {
 
 export async function bulkUpdateRoutines(routines: IRoutine[]) {
   await routineRepository.databaseLayer.bulkInsertOrReplace(routines);
+}
+
+export function getRoutineSets(query: IQueryOptions<IRoutineSet>) {
+  return routineSetRepository.query({
+    ...query,
+    where: { ...query?.where, isDeleted: { equals: false } },
+  });
 }

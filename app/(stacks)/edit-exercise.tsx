@@ -10,7 +10,7 @@ import { TextInput } from '@/modules/common/components/TextInput';
 import { cn } from '@/modules/common/utils/cn';
 import { BODY_PARTS_IN_KOREAN } from '@/modules/exercise/configs';
 import { TBodyPart, exerciseRepository } from '@/modules/exercise/models';
-import { getExercise } from '@/modules/exercise/utils/sqlClient';
+import { getExercise } from '@/modules/exercise/utils';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&
