@@ -6,9 +6,10 @@ export interface IWorkout {
 
 export interface IWorkoutSet {
   id: string;
+  isCompleted: boolean;
   workoutId: string;
   exerciseId: string;
-  setIndex: number;
-  repetitionCount: number;
+  setNumber: number;
+  repCount: number;
   isDeleted?: boolean;
 }
