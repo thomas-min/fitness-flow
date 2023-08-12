@@ -1,29 +1,40 @@
 import { useRouter } from 'expo-router';
 import { PlusIcon } from 'lucide-react-native';
+import { Dispatch, SetStateAction } from 'react';
 import { View, Text, Pressable } from 'react-native';
 
 import { ExerciseItem } from './ExerciseItem';
 import { BODY_PARTS_IN_KOREAN } from '../configs';
-import { useExercisesByBodyPart } from '../hooks/useExerciseModelStore';
-import { useExerciseScreenMode } from '../hooks/useExerciseViewStore';
-import { TBodyPart } from '../models';
+import { useExerciseScreenMode } from '../hooks/useExerciseScreenStore';
+import { IExercise, TBodyPart } from '../models';
+import { deleteExercise } from '../utils';
 
 import { Divider } from '@/modules/common/components/Divider';
 import { cn } from '@/modules/common/utils/cn';
 
 interface Props {
   bodyPart: TBodyPart;
+  exercises: IExercise[];
+  setExercises: Dispatch<SetStateAction<IExercise[]>>;
 }
 
-export function BodyPartSection({ bodyPart }: Props) {
+export function BodyPartSection({ bodyPart, exercises, setExercises }: Props) {
   const router = useRouter();
 
+  const filteredExercises = exercises.filter((exercise) => exercise.bodyPart === bodyPart);
   const exerciseScreenMode = useExerciseScreenMode();
-  const exercises = useExercisesByBodyPart(bodyPart);
-
-  const handleAddExercise = () => {
+  const openEditScreen = () => {
     router.push(`/edit-exercise?bodyPart=${bodyPart}`);
   };
+
+  const removeExercise = (exercise: IExercise) => {
+    setExercises((prev) => prev.filter((prevExercise) => prevExercise.id !== exercise.id));
+    deleteExercise(exercise);
+  };
+
+  if (filteredExercises.length === 0) {
+    return null;
+  }
 
   return (
     <View className="my-4">
@@ -31,7 +42,7 @@ export function BodyPartSection({ bodyPart }: Props) {
         <Text className="ml-1 text-base font-semibold">{BODY_PARTS_IN_KOREAN[bodyPart]}</Text>
         <Pressable
           disabled={exerciseScreenMode === 'view'}
-          onPress={handleAddExercise}
+          onPress={openEditScreen}
           className={cn('rounded p-2 active:opacity-50', {
             'opacity-0': exerciseScreenMode === 'view',
           })}>
@@ -40,8 +51,8 @@ export function BodyPartSection({ bodyPart }: Props) {
       </View>
       <Divider />
       <View className="h-2" />
-      {exercises.map((exercise) => (
-        <ExerciseItem exercise={exercise} key={exercise.id} />
+      {filteredExercises.map((exercise) => (
+        <ExerciseItem exercise={exercise} key={exercise.id} removeExercise={removeExercise} />
       ))}
     </View>
   );
