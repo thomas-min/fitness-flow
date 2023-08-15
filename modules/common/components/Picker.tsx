@@ -18,6 +18,7 @@ interface Props<T> {
   onChange?: (option: IOption<T>) => void;
 }
 
+// FIXME: component height is not fixed in iOS
 export function Picker<T>({
   style,
   options,
@@ -40,7 +41,7 @@ export function Picker<T>({
   return (
     <>
       <Pressable
-        className="border-gray-150 h-12 rounded-lg bg-gray-100 px-3 py-4"
+        className="border-gray-150 rounded-lg bg-gray-100 px-3 py-4"
         style={style}
         onPress={toggleModal}>
         <Text
