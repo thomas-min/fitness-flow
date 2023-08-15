@@ -8,6 +8,7 @@ function TextInput(props: TextInputProps) {
   return (
     <RNTextInput
       className={cn('border-gray-150 rounded-lg bg-gray-100 px-3 py-4', className)}
+      placeholderTextColor="#9ca3af" // gray-400
       {...rest}
     />
   );
