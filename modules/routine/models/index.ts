@@ -44,26 +44,26 @@ export const routineExerciseRepository = new Repository(
   routineExerciseColumnMapping
 );
 
-export interface IRoutineSet {
+export interface IRoutineExerciseSet {
   id: number;
-  routineId: number;
-  exerciseId: number;
+  routineExerciseId: number;
+  exerciseUnitValue?: string;
   setNumber: number;
-  repCount: number;
+  repCount?: number;
   isDeleted?: boolean;
 }
 
-const routineSetColumnMapping: ColumnMapping<IRoutineSet> = {
+const routineExerciseSetColumnMapping: ColumnMapping<IRoutineExerciseSet> = {
   id: { type: columnTypes.INTEGER },
-  routineId: { type: columnTypes.INTEGER },
-  exerciseId: { type: columnTypes.INTEGER },
+  routineExerciseId: { type: columnTypes.INTEGER },
+  exerciseUnitValue: { type: columnTypes.INTEGER, default: () => null },
   setNumber: { type: columnTypes.INTEGER },
-  repCount: { type: columnTypes.INTEGER },
+  repCount: { type: columnTypes.INTEGER, default: () => null },
   isDeleted: { type: columnTypes.BOOLEAN, default: () => false },
 };
 
-export const routineSetRepository = new Repository(
+export const routineExerciseSetRepository = new Repository(
   'fitnessFlow',
-  'routineSets',
-  routineSetColumnMapping
+  'routineExerciseSets',
+  routineExerciseSetColumnMapping
 );

@@ -29,16 +29,15 @@ export const statements: IStatement = {
           FOREIGN KEY (routineId) REFERENCES routines (id),
           FOREIGN KEY (exerciseId) REFERENCES exercises (id)
         );`,
-  '1662689376198_create_routine_sets': sql`
-        CREATE TABLE routineSets (
+  '1662689376198_create_routine_exercise_sets': sql`
+        CREATE TABLE routineExerciseSets (
           id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-          routineId INTEGER NOT NULL,
-          exerciseId INTEGER NOT NULL,
+          routineExerciseId INTEGER NOT NULL,
+          exerciseUnitValue TEXT NOT NULL,
           setNumber INTEGER NOT NULL,
-          repCount INTEGER NOT NULL,
+          repCount INTEGER DEFAULT NULL,
           isDeleted BOOLEAN NOT NULL DEFAULT false,
-          FOREIGN KEY (routineId) REFERENCES routines (id),
-          FOREIGN KEY (exerciseId) REFERENCES exercises (id)
+          FOREIGN KEY (routineExerciseId) REFERENCES routineExercises (id)
         );`,
 };
 

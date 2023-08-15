@@ -32,6 +32,7 @@
     "expo-status-bar": "~1.6.0",
     "expo-system-ui": "~2.4.0",
     "expo-web-browser": "~12.3.2",
+    "immer": "^9.0.12",
     "lodash-es": "^4.17.21",
     "lucide-react-native": "^0.262.0",
     "nanoid": "^4.0.2",
@@ -52,6 +53,7 @@
     "react-native-web": "~0.19.6",
     "tailwind-merge": "^1.14.0",
     "ts-pattern": "^5.0.5",
+    "use-immer": "^0.9.0",
     "zustand": "^4.3.9"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import { produce } from 'immer';
 import { CheckCircle2Icon, CircleIcon } from 'lucide-react-native';
 import { Dispatch, SetStateAction, forwardRef, useCallback, useEffect, useState } from 'react';
 import { ListRenderItemInfo, Pressable, Text, View } from 'react-native';
@@ -6,6 +7,7 @@ import { ListRenderItemInfo, Pressable, Text, View } from 'react-native';
 import { IExercise, exerciseRepository } from '../models';
 
 import { BODY_PARTS_IN_KOREAN } from '@/modules/exercise/configs';
+import { getRoutine } from '@/modules/routine/utils';
 
 const snapPoints = ['50%'];
 const style = {
@@ -22,13 +24,15 @@ const style = {
   elevation: 11,
 };
 
+type Routine = NonNullable<Awaited<ReturnType<typeof getRoutine>>>;
+
 interface Props {
-  selected: IExercise[];
-  setSelected: Dispatch<SetStateAction<IExercise[]>>;
+  routine: Routine;
+  setRoutine: Dispatch<SetStateAction<Routine>>;
 }
 
 export const ExerciseBottomSheet = forwardRef<BottomSheet, Props>(function ExerciseBottomSheet(
-  { selected, setSelected },
+  { routine, setRoutine },
   ref
 ) {
   const [exercises, setExercises] = useState<IExercise[]>([]);
@@ -50,12 +54,30 @@ export const ExerciseBottomSheet = forwardRef<BottomSheet, Props>(function Exerc
         className="ios:mb-5"
         data={exercises.slice().sort((a, b) => a.name.localeCompare(b.name))}
         renderItem={(props) => {
-          const isSelected = selected.some((exercise) => exercise.id === props.item.id);
+          const isSelected = routine.routineExercises.some((re) => re.exerciseId === props.item.id);
           const onPress = () => {
             if (isSelected) {
-              setSelected(selected.filter((exercise) => exercise.id !== props.item.id));
+              setRoutine((prev) =>
+                produce(prev, (draft) => {
+                  const index = draft.routineExercises.findIndex(
+                    (re) => re.exerciseId === props.item.id
+                  );
+                  draft.routineExercises.splice(index, 1);
+                })
+              );
             } else {
-              setSelected([...selected, props.item]);
+              setRoutine((prev) =>
+                produce(prev, (draft) => {
+                  draft.routineExercises.push({
+                    id: 0,
+                    routineId: routine.id,
+                    exerciseId: props.item.id,
+                    sets: [],
+                    exercise: exercises.find((e) => e.id === props.item.id),
+                    position: draft.routineExercises.length + 1,
+                  });
+                })
+              );
             }
           };
 

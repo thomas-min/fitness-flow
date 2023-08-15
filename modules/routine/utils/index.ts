@@ -3,11 +3,10 @@ import { IQueryOptions } from 'expo-sqlite-orm';
 import {
   IRoutine,
   IRoutineExercise,
-  IRoutineSet,
   IRoutineWithExercises,
   routineExerciseRepository,
+  routineExerciseSetRepository,
   routineRepository,
-  routineSetRepository,
 } from '../models';
 
 import { exerciseRepository } from '@/modules/exercise/models';
@@ -22,6 +21,7 @@ export async function createRoutine(routine: IRoutineWithExercises) {
       isDeleted: false,
     })
   );
+
   await routineExerciseRepository.databaseLayer.bulkInsertOrReplace(_routineExercises);
 
   return {
@@ -48,7 +48,13 @@ export async function getRoutines(query?: IQueryOptions<IRoutine>) {
     const _exercises = exercises.filter((e) =>
       _routineExercises.map((re) => re.exerciseId).includes(e.id)
     );
-    return { ...routine, exercises: _exercises };
+    return {
+      ...routine,
+      routineExercises: _routineExercises.map((re) => ({
+        ...re,
+        exercise: _exercises.find((e) => e.id === re.exerciseId),
+      })),
+    };
   });
 
   return routineWithExercises;
@@ -64,8 +70,18 @@ export async function getRoutine(id: number) {
   const exercises = await exerciseRepository.query({
     where: { id: { in: routineExercises.map((re) => re.exerciseId) } },
   });
+  const routineExerciseSets = await routineExerciseSetRepository.query({
+    where: { routineExerciseId: { in: routineExercises.map((re) => re.id) } },
+  });
 
-  return { ...routine, exercises };
+  return {
+    ...routine,
+    routineExercises: routineExercises.map((re) => ({
+      ...re,
+      exercise: exercises.find((e) => e.id === re.exerciseId),
+      sets: routineExerciseSets.filter((res) => res.routineExerciseId === re.id),
+    })),
+  };
 }
 
 export async function updateRoutine(routine: IRoutineWithExercises) {
@@ -90,9 +106,6 @@ export async function bulkUpdateRoutines(routines: IRoutine[]) {
   await routineRepository.databaseLayer.bulkInsertOrReplace(routines);
 }
 
-export function getRoutineSets(query: IQueryOptions<IRoutineSet>) {
-  return routineSetRepository.query({
-    ...query,
-    where: { ...query?.where, isDeleted: { equals: false } },
-  });
+export async function bulkUpdateRoutineExercises(routineExercises: IRoutineExercise[]) {
+  await routineExerciseRepository.databaseLayer.bulkInsertOrReplace(routineExercises);
 }

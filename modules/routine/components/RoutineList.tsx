@@ -4,10 +4,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
 
-import { IRoutine, IRoutineWithExercises } from '../models';
 import { bulkUpdateRoutines, getRoutines } from '../utils';
-
-import { IExercise } from '@/modules/exercise/models';
 
 const routineListStyles = {
   container: {
@@ -15,10 +12,13 @@ const routineListStyles = {
   },
 };
 
-export function RoutineList() {
-  const [routines, setRoutines] = useState<IRoutineWithExercises[]>([]);
+type Routines = Awaited<ReturnType<typeof getRoutines>>;
+type Routine = Routines[number];
 
-  const updateRoutineOrder = async (routines: IRoutineWithExercises[]) => {
+export function RoutineList() {
+  const [routines, setRoutines] = useState<Routines>([]);
+
+  const updateRoutineOrder = async (routines: Routines) => {
     setRoutines(routines);
     await bulkUpdateRoutines(
       routines.map((routine, idx) => ({
@@ -49,21 +49,18 @@ export function RoutineList() {
       onDragEnd={({ data }) => {
         updateRoutineOrder(data);
       }}
-      renderItem={({ item, drag }) => (
-        <Item routine={item} drag={drag} exercises={item.exercises} />
-      )}
+      renderItem={({ item, drag }) => <Item routine={item} drag={drag} />}
       keyExtractor={(item) => item.id.toString()}
     />
   );
 }
 
 interface ItemProps {
-  routine: IRoutine;
-  exercises: IExercise[];
+  routine: Routine;
   drag: () => void;
 }
 
-function Item({ routine, exercises, drag }: ItemProps) {
+function Item({ routine, drag }: ItemProps) {
   const router = useRouter();
 
   const handlePress = () => {
@@ -71,7 +68,7 @@ function Item({ routine, exercises, drag }: ItemProps) {
   };
 
   return (
-    <ScaleDecorator>
+    <ScaleDecorator activeScale={0.95}>
       <View className="p-4">
         <View className="flex-row items-center gap-4">
           <Pressable onLongPress={drag}>
@@ -80,11 +77,11 @@ function Item({ routine, exercises, drag }: ItemProps) {
           <Pressable onPress={handlePress} className="flex-1 active:opacity-50">
             <Text className="text-lg font-bold">{routine.name}</Text>
             <View className="flex-row flex-wrap">
-              {exercises.map((exercise, idx) => {
+              {routine.routineExercises.map((re, idx) => {
                 return (
-                  <Fragment key={exercise.id}>
-                    <Text className="text-sm">{exercise?.name}</Text>
-                    {idx !== exercises.length - 1 && <Text>, </Text>}
+                  <Fragment key={re.id}>
+                    <Text className="text-sm">{re?.exercise?.name}</Text>
+                    {idx !== routine.routineExercises.length - 1 && <Text>, </Text>}
                   </Fragment>
                 );
               })}
