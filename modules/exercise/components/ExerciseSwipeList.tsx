@@ -45,7 +45,7 @@ export function ExerciseSwipeList() {
       useSectionList
       className="flex-1"
       sections={sections}
-      initialNumToRender={20}
+      initialNumToRender={30}
       stickySectionHeadersEnabled={false}
       keyExtractor={(item) => item.id.toString()}
       renderSectionHeader={({ section }) => (
