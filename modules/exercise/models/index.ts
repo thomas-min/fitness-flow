@@ -1,6 +1,6 @@
 import { ColumnMapping, Repository, columnTypes } from 'expo-sqlite-orm';
 
-export type TBodyPart = 'chest' | 'back' | 'shoulders' | 'legs' | 'arms' | 'abs' | 'whole';
+export type TBodyPart = 'chest' | 'back' | 'shoulders' | 'legs' | 'arms' | 'abs' | 'whole' | 'etc';
 
 export interface IExercise {
   id: number;

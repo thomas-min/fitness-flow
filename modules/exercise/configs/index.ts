@@ -8,6 +8,7 @@ export const BODY_PARTS: TBodyPart[] = [
   'arms',
   'abs',
   'whole',
+  'etc',
 ];
 
 export const BODY_PARTS_IN_KOREAN: Record<TBodyPart, string> = {
@@ -18,6 +19,7 @@ export const BODY_PARTS_IN_KOREAN: Record<TBodyPart, string> = {
   arms: '팔',
   abs: '복근',
   whole: '전신',
+  etc: '기타',
 };
 
 export const DEFAULT_EXERCISES: IExercise[] = [
