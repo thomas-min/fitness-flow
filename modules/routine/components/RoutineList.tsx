@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { useNavigation, useRouter } from 'expo-router';
 import { EqualIcon } from 'lucide-react-native';
 import { Fragment, useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
@@ -16,6 +16,8 @@ type Routines = Awaited<ReturnType<typeof getRoutines>>;
 type Routine = Routines[number];
 
 export function RoutineList() {
+  const navigation = useNavigation();
+
   const [routines, setRoutines] = useState<Routines>([]);
 
   const updateRoutineOrder = async (routines: Routines) => {
@@ -39,8 +41,9 @@ export function RoutineList() {
       });
       setRoutines(routines);
     };
-    init();
-  }, []);
+    const unsubscribe = navigation.addListener('focus', init);
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <DraggableFlatList

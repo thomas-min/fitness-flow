@@ -11,7 +11,7 @@ import { Divider } from '@/modules/common/components/Divider';
 import { TextInput } from '@/modules/common/components/TextInput';
 import { cn } from '@/modules/common/utils/cn';
 import { ExerciseBottomSheet } from '@/modules/exercise/components/ExerciseBottomSheet';
-import { getRoutine } from '@/modules/routine/utils';
+import { createRoutine, getRoutine } from '@/modules/routine/utils';
 
 type Routine = NonNullable<Awaited<ReturnType<typeof getRoutine>>>;
 
@@ -43,8 +43,14 @@ export default function EditRoutineScreen() {
     setRoutine(emptyRoutine);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // TODO: save
+    if (+params.id) {
+      // TODO: update
+    } else {
+      await createRoutine(routine);
+    }
+    router.back();
   };
 
   useEffect(() => {

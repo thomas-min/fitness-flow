@@ -1,9 +1,10 @@
 import { IQueryOptions } from 'expo-sqlite-orm';
+import { omit } from 'lodash-es';
 
 import {
   IRoutine,
   IRoutineExercise,
-  IRoutineWithExercises,
+  IRoutineExerciseSet,
   routineExerciseRepository,
   routineExerciseSetRepository,
   routineRepository,
@@ -13,22 +14,48 @@ import { exerciseRepository } from '@/modules/exercise/models';
 
 export type TRoutine = NonNullable<Awaited<ReturnType<typeof getRoutine>>>;
 
-export async function createRoutine(routine: IRoutineWithExercises) {
-  const _routine = await routineRepository.insert(routine);
-  const _routineExercises: Omit<IRoutineExercise, 'id'>[] = routine.exercises.map(
-    (exercise, position) => ({
+export async function createRoutine(routine: TRoutine) {
+  const _routine = await routineRepository.insert(omit(routine, 'id'));
+
+  const routineExercisesToInsert: Omit<IRoutineExercise, 'id'>[] = routine.routineExercises
+    .filter((re) => !re.isDeleted)
+    .map((re, position) => ({
       routineId: _routine.id,
-      exerciseId: exercise.id,
+      exerciseId: re.exerciseId,
       position,
-      isDeleted: false,
-    })
+    }));
+  const _routineExercises = await Promise.all(
+    routineExercisesToInsert.map(routineExerciseRepository.insert.bind(routineExerciseRepository))
   );
 
-  await routineExerciseRepository.databaseLayer.bulkInsertOrReplace(_routineExercises);
+  const routineExerciseSetsToInsert: Omit<IRoutineExerciseSet, 'id'>[] = routine.routineExercises
+    .filter((re) => !re.isDeleted)
+    .flatMap((e) =>
+      e.sets
+        .filter((s) => !s.isDeleted)
+        .map((s) => ({
+          routineExerciseId: _routineExercises.find((re) => re.exerciseId === e.exerciseId)!.id,
+          exerciseUnitValue: s.exerciseUnitValue,
+          setNumber: s.setNumber,
+          repCount: s.repCount,
+        }))
+    );
+  const _routineExerciseSets = await Promise.all(
+    routineExerciseSetsToInsert.map(
+      routineExerciseSetRepository.insert.bind(routineExerciseSetRepository)
+    )
+  );
 
   return {
     ..._routine,
-    exercises: routine.exercises,
+    routineExercises: _routineExercises
+      .map((re) => ({
+        ...re,
+        sets: _routineExerciseSets
+          .filter((res) => res.routineExerciseId === re.id)
+          .sort((a, b) => a.setNumber - b.setNumber),
+      }))
+      .sort((a, b) => a.position - b.position),
   };
 }
 
