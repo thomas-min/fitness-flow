@@ -4,8 +4,16 @@ import { ScrollView, Text } from 'react-native';
 import { migrations } from '@/modules/common/db';
 import { DEFAULT_EXERCISES } from '@/modules/exercise/configs';
 import { IExercise, exerciseRepository } from '@/modules/exercise/models';
-import { DEFAULT_ROUTINES, DEFAULT_ROUTINE_EXERCISES } from '@/modules/routine/configs';
-import { routineExerciseRepository, routineRepository } from '@/modules/routine/models';
+import {
+  DEFAULT_ROUTINES,
+  DEFAULT_ROUTINE_EXERCISES,
+  DEFAULT_ROUTINE_EXERCISE_SETS,
+} from '@/modules/routine/configs';
+import {
+  routineExerciseRepository,
+  routineExerciseSetRepository,
+  routineRepository,
+} from '@/modules/routine/models';
 
 export default function TestScreen() {
   const [exercise, setExercise] = useState<IExercise[]>([]);
@@ -29,6 +37,9 @@ export default function TestScreen() {
     await exerciseRepository.databaseLayer.bulkInsertOrReplace(DEFAULT_EXERCISES);
     await routineRepository.databaseLayer.bulkInsertOrReplace(DEFAULT_ROUTINES);
     await routineExerciseRepository.databaseLayer.bulkInsertOrReplace(DEFAULT_ROUTINE_EXERCISES);
+    await routineExerciseSetRepository.databaseLayer.bulkInsertOrReplace(
+      DEFAULT_ROUTINE_EXERCISE_SETS
+    );
   };
 
   return (

@@ -1,4 +1,4 @@
-import { IRoutine, IRoutineExercise } from '../models';
+import { IRoutine, IRoutineExercise, IRoutineExerciseSet } from '../models';
 
 export const DEFAULT_ROUTINES: IRoutine[] = [
   {
@@ -114,3 +114,18 @@ export const DEFAULT_ROUTINE_EXERCISES: IRoutineExercise[] = [
     position: 1,
   },
 ];
+
+export const DEFAULT_ROUTINE_EXERCISE_SETS: IRoutineExerciseSet[] = DEFAULT_ROUTINE_EXERCISES.map(
+  (routineExercise: IRoutineExercise, index: number) => {
+    const routineExerciseSet: IRoutineExerciseSet[] = [];
+    for (let i = 0; i < 5; i++) {
+      routineExerciseSet.push({
+        id: index * 5 + i + 1,
+        routineExerciseId: routineExercise.id,
+        setNumber: i + 1,
+        repCount: 5,
+      });
+    }
+    return routineExerciseSet;
+  }
+).flat();
