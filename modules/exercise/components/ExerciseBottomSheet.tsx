@@ -7,7 +7,7 @@ import { ListRenderItemInfo, Pressable, Text, View } from 'react-native';
 import { IExercise, exerciseRepository } from '../models';
 
 import { BODY_PARTS_IN_KOREAN } from '@/modules/exercise/configs';
-import { getRoutine } from '@/modules/routine/utils';
+import { TRoutine } from '@/modules/routine/utils';
 
 const snapPoints = ['50%'];
 const style = {
@@ -24,11 +24,9 @@ const style = {
   elevation: 11,
 };
 
-type Routine = NonNullable<Awaited<ReturnType<typeof getRoutine>>>;
-
 interface Props {
-  routine: Routine;
-  setRoutine: Dispatch<SetStateAction<Routine>>;
+  routine: TRoutine;
+  setRoutine: Dispatch<SetStateAction<TRoutine>>;
 }
 
 export const ExerciseBottomSheet = forwardRef<BottomSheet, Props>(function ExerciseBottomSheet(
@@ -54,7 +52,9 @@ export const ExerciseBottomSheet = forwardRef<BottomSheet, Props>(function Exerc
         className="ios:mb-5"
         data={exercises.slice().sort((a, b) => a.name.localeCompare(b.name))}
         renderItem={(props) => {
-          const isSelected = routine.routineExercises.some((re) => re.exerciseId === props.item.id);
+          const isSelected = routine.routineExercises.some(
+            (re) => re.exerciseId === props.item.id && !re.isDeleted
+          );
           const onPress = () => {
             if (isSelected) {
               setRoutine((prev) =>
@@ -62,7 +62,7 @@ export const ExerciseBottomSheet = forwardRef<BottomSheet, Props>(function Exerc
                   const index = draft.routineExercises.findIndex(
                     (re) => re.exerciseId === props.item.id
                   );
-                  draft.routineExercises.splice(index, 1);
+                  draft.routineExercises[index].isDeleted = true;
                 })
               );
             } else {
@@ -72,7 +72,13 @@ export const ExerciseBottomSheet = forwardRef<BottomSheet, Props>(function Exerc
                     id: 0,
                     routineId: routine.id,
                     exerciseId: props.item.id,
-                    sets: [],
+                    sets: [
+                      {
+                        id: 0,
+                        routineExerciseId: 0,
+                        setNumber: 1,
+                      },
+                    ],
                     exercise: exercises.find((e) => e.id === props.item.id),
                     position: draft.routineExercises.length + 1,
                   });

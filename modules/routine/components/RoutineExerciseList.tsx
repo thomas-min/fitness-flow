@@ -23,7 +23,8 @@ export function RoutineExerciseList({ routine, setRoutine }: Props) {
     setRoutine((prev) =>
       produce(prev, (draft) => {
         const routineExercise = draft.routineExercises.find(
-          (routineExercise) => routineExercise.exerciseId === exercise.id
+          (routineExercise) =>
+            routineExercise.exerciseId === exercise.id && !routineExercise.isDeleted
         );
         const routineExerciseSet = routineExercise?.sets.find(
           (routineExerciseSet) => routineExerciseSet.setNumber === set.setNumber
@@ -40,9 +41,12 @@ export function RoutineExerciseList({ routine, setRoutine }: Props) {
     setRoutine((prev) =>
       produce(prev, (draft) => {
         const routineExercise = draft.routineExercises.find(
-          (routineExercise) => routineExercise.exerciseId === exercise.id
+          (routineExercise) =>
+            routineExercise.exerciseId === exercise.id && !routineExercise.isDeleted
         );
-        const lastRoutineExerciseSet = routineExercise?.sets.slice(-1)[0];
+        const lastRoutineExerciseSet = routineExercise?.sets
+          .filter((set) => !set.isDeleted)
+          .slice(-1)[0];
 
         routineExercise?.sets.push({
           id: 0,
@@ -59,9 +63,12 @@ export function RoutineExerciseList({ routine, setRoutine }: Props) {
     setRoutine((prev) =>
       produce(prev, (draft) => {
         const routineExercise = draft.routineExercises.find(
-          (routineExercise) => routineExercise.exerciseId === exercise.id
+          (routineExercise) =>
+            routineExercise.exerciseId === exercise.id && !routineExercise.isDeleted
         );
-        routineExercise?.sets.pop();
+        const lastSet = routineExercise?.sets.filter((set) => !set.isDeleted).slice(-1)[0];
+        if (!lastSet) return;
+        lastSet.isDeleted = true;
       })
     );
   };
@@ -69,7 +76,7 @@ export function RoutineExerciseList({ routine, setRoutine }: Props) {
   return (
     <DraggableFlatList
       containerStyle={{ flex: 1 }}
-      data={routineExercises}
+      data={routineExercises.filter((re) => !re.isDeleted)}
       onDragEnd={({ data }) => {
         setRoutine((prev) =>
           produce(prev, (draft) => {
@@ -80,7 +87,7 @@ export function RoutineExerciseList({ routine, setRoutine }: Props) {
           })
         );
       }}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => item.exerciseId.toString()}
       renderItem={({ item, drag }) => {
         if (!item.exercise) return null;
 
@@ -119,14 +126,16 @@ function Item({ exercise, routineSets, updateSet, pushSet, popSet, drag }: ItemP
           </Pressable>
         </View>
         <View>
-          {routineSets.map((set) => (
-            <RoutineSet
-              exercise={exercise}
-              set={set}
-              updateSet={updateSet}
-              key={`${exercise.id}-${set.setNumber}`}
-            />
-          ))}
+          {routineSets
+            .filter((set) => !set.isDeleted)
+            .map((set) => (
+              <RoutineSet
+                exercise={exercise}
+                set={set}
+                updateSet={updateSet}
+                key={`${exercise.id}-${set.setNumber}`}
+              />
+            ))}
         </View>
         <View className="flex-row gap-2 pt-6">
           <Pressable

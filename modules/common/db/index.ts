@@ -33,7 +33,7 @@ export const statements: IStatement = {
         CREATE TABLE routineExerciseSets (
           id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
           routineExerciseId INTEGER NOT NULL,
-          exerciseUnitValue TEXT NOT NULL,
+          exerciseUnitValue TEXT DEFAULT NULL,
           setNumber INTEGER NOT NULL,
           repCount INTEGER DEFAULT NULL,
           isDeleted BOOLEAN NOT NULL DEFAULT false,
