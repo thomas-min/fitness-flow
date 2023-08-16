@@ -1,16 +1,10 @@
 import { ColumnMapping, Repository, columnTypes } from 'expo-sqlite-orm';
 
-import { IExercise } from '@/modules/exercise/models';
-
 export interface IRoutine {
   id: number;
   name: string;
   position: number;
   isDeleted?: boolean;
-}
-
-export interface IRoutineWithExercises extends IRoutine {
-  exercises: IExercise[];
 }
 
 const routineColumnMapping: ColumnMapping<IRoutine> = {
