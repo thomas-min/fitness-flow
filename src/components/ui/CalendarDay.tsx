@@ -2,8 +2,9 @@ import clsx from 'clsx';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { DayComponentType, useCalendarContext } from 'react-native-swipe-calendar';
+import { useRecoilValue } from 'recoil';
 
-import { useIsCalendarDateMarked } from '../../hooks/useCalendarStore';
+import { isMarkedDateState } from '@/src/states/calendar';
 
 export const CalendarDay: DayComponentType = ({
   date,
@@ -12,7 +13,7 @@ export const CalendarDay: DayComponentType = ({
   isToday,
 }) => {
   const { onDateSelect } = useCalendarContext();
-  const marked = useIsCalendarDateMarked(date);
+  const marked = useRecoilValue(isMarkedDateState(date));
   const onDayPress = () => onDateSelect?.(date, { isSelected });
 
   return (

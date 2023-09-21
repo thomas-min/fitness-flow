@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { RecoilRoot } from 'recoil';
 import '../global.css';
 
 export {
@@ -45,14 +46,16 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <ThemeProvider value={DefaultTheme}>
-      <StatusBar style="dark" />
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        <Stack.Screen name="(stacks)/edit-exercise" options={{ headerShown: false }} />
-        <Stack.Screen name="(stacks)/edit-routine" options={{ headerShown: false }} />
-      </Stack>
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider value={DefaultTheme}>
+        <StatusBar style="dark" />
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="(stacks)/edit-exercise" options={{ headerShown: false }} />
+          <Stack.Screen name="(stacks)/edit-routine" options={{ headerShown: false }} />
+        </Stack>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
