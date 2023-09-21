@@ -2,8 +2,8 @@ import React from 'react';
 import { Platform, UIManager } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { ExerciseScreenHeader } from '@/modules/exercise/components/ExerciseScreenHeader';
-import { ExerciseSwipeList } from '@/modules/exercise/components/ExerciseSwipeList';
+import { ExerciseScreenHeader } from '@/src/components/ExerciseScreenHeader';
+import { ExerciseSwipeList } from '@/src/components/ExerciseSwipeList';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&

@@ -8,9 +8,9 @@ import {
   routineExerciseRepository,
   routineExerciseSetRepository,
   routineRepository,
-} from '../models';
+} from './routine.model';
 
-import { exerciseRepository } from '@/modules/exercise/models';
+import { exerciseRepository } from '@/src/db/exercise.model';
 
 export type TRoutine = NonNullable<Awaited<ReturnType<typeof getRoutine>>>;
 

@@ -2,14 +2,15 @@ import React, { forwardRef } from 'react';
 import { View } from 'react-native';
 import Calendar, { CalendarImperativeApi } from 'react-native-swipe-calendar';
 
-import { CalendarDay } from '@/modules/workout/components/CalendarDay';
-import { CalendarDayLabel } from '@/modules/workout/components/CalendarDayLabel';
-import { CalendarHeader } from '@/modules/workout/components/CalendarHeader';
+import { CalendarDayLabel } from './ui/CalendarDayLabel';
+import { CalendarHeader } from './ui/CalendarHeader';
+
+import { CalendarDay } from '@/src/components/ui/CalendarDay';
 import {
   useCalendarActions,
   useCalendarCurrentDate,
   useCalendarSelectedDate,
-} from '@/modules/workout/hooks/useCalendarStore';
+} from '@/src/hooks/useCalendarStore';
 
 export const WorkoutCalendar = forwardRef<CalendarImperativeApi, object>(
   function WorkoutCalendar(_, ref) {

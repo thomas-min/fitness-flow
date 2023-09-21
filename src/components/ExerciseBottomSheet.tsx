@@ -4,10 +4,10 @@ import { CheckCircle2Icon, CircleIcon } from 'lucide-react-native';
 import { Dispatch, SetStateAction, forwardRef, useCallback, useEffect, useState } from 'react';
 import { ListRenderItemInfo, Pressable, Text, View } from 'react-native';
 
-import { IExercise, exerciseRepository } from '../models';
+import { IExercise, exerciseRepository } from '../db/exercise.model';
 
-import { BODY_PARTS_IN_KOREAN } from '@/modules/exercise/configs';
-import { TRoutine } from '@/modules/routine/utils';
+import { BODY_PARTS_IN_KOREAN } from '@/src/db/exercise.seed';
+import { TRoutine } from '@/src/db/routine.service';
 
 const snapPoints = ['50%'];
 const style = {

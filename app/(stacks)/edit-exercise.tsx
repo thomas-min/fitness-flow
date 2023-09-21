@@ -5,12 +5,12 @@ import { KeyboardAvoidingView, Platform, Pressable, Text, UIManager, View } from
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Picker } from '@/modules/common/components/Picker';
-import { TextInput } from '@/modules/common/components/TextInput';
-import { cn } from '@/modules/common/utils/cn';
-import { BODY_PARTS_IN_KOREAN } from '@/modules/exercise/configs';
-import { IExercise, TBodyPart } from '@/modules/exercise/models';
-import { createExercise, getExercise, updateExercise } from '@/modules/exercise/utils';
+import { Picker } from '@/src/components/ui/Picker';
+import { TextInput } from '@/src/components/ui/TextInput';
+import { IExercise, TBodyPart } from '@/src/db/exercise.model';
+import { BODY_PARTS_IN_KOREAN } from '@/src/db/exercise.seed';
+import { createExercise, getExercise, updateExercise } from '@/src/db/exercise.service';
+import { cn } from '@/src/utils/cn';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&

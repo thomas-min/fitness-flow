@@ -1,6 +1,6 @@
 import { IQueryOptions } from 'expo-sqlite-orm';
 
-import { IExercise, exerciseRepository } from '../models';
+import { IExercise, exerciseRepository } from './exercise.model';
 
 export async function getExercise(id: number) {
   const exercise = await exerciseRepository.find(id);

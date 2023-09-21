@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 
-import { IExercise } from '../models';
+import { IExercise } from '../db/exercise.model';
 
 interface Props {
   exercise: IExercise;

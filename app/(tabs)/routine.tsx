@@ -2,8 +2,8 @@ import React from 'react';
 import { Platform, UIManager, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { RoutineList } from '@/modules/routine/components/RoutineList';
-import { RoutineScreenHeader } from '@/modules/routine/components/RoutineScreenHeader';
+import { RoutineList } from '@/src/components/RoutineList';
+import { RoutineScreenHeader } from '@/src/components/RoutineScreenHeader';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&

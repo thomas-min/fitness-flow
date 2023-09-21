@@ -5,13 +5,13 @@ import { useEffect, useRef, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, Text, UIManager, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { RoutineExerciseList } from '../../modules/routine/components/RoutineExerciseList';
+import { RoutineExerciseList } from '../../src/components/RoutineExerciseList';
 
-import { Divider } from '@/modules/common/components/Divider';
-import { TextInput } from '@/modules/common/components/TextInput';
-import { cn } from '@/modules/common/utils/cn';
-import { ExerciseBottomSheet } from '@/modules/exercise/components/ExerciseBottomSheet';
-import { createRoutine, getRoutine } from '@/modules/routine/utils';
+import { ExerciseBottomSheet } from '@/src/components/ExerciseBottomSheet';
+import { Divider } from '@/src/components/ui/Divider';
+import { TextInput } from '@/src/components/ui/TextInput';
+import { createRoutine, getRoutine, updateRoutine } from '@/src/db/routine.service';
+import { cn } from '@/src/utils/cn';
 
 type Routine = NonNullable<Awaited<ReturnType<typeof getRoutine>>>;
 
@@ -44,9 +44,8 @@ export default function EditRoutineScreen() {
   };
 
   const handleSave = async () => {
-    // TODO: save
     if (+params.id) {
-      // TODO: update
+      await updateRoutine(routine);
     } else {
       await createRoutine(routine);
     }

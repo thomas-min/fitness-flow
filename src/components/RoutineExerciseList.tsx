@@ -4,11 +4,11 @@ import { Dispatch, SetStateAction } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
 
-import { IRoutineExerciseSet } from '../models';
-import { getRoutine } from '../utils';
+import { IRoutineExerciseSet } from '../db/routine.model';
+import { getRoutine } from '../db/routine.service';
 
-import { TextInput } from '@/modules/common/components/TextInput';
-import { IExercise } from '@/modules/exercise/models';
+import { TextInput } from '@/src/components/ui/TextInput';
+import { IExercise } from '@/src/db/exercise.model';
 
 type Routine = NonNullable<Awaited<ReturnType<typeof getRoutine>>>;
 

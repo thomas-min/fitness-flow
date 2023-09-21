@@ -4,11 +4,11 @@ import { View, Pressable, Text } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 import { ExerciseItem } from './ExerciseItem';
-import { BODY_PARTS, BODY_PARTS_IN_KOREAN } from '../configs';
-import { IExercise, TBodyPart } from '../models';
-import { deleteExercise, getExercises } from '../utils';
+import { IExercise, TBodyPart } from '../db/exercise.model';
+import { BODY_PARTS, BODY_PARTS_IN_KOREAN } from '../db/exercise.seed';
+import { deleteExercise, getExercises } from '../db/exercise.service';
 
-import { Divider } from '@/modules/common/components/Divider';
+import { Divider } from '@/src/components/ui/Divider';
 
 export function ExerciseSwipeList() {
   const navigation = useNavigation();

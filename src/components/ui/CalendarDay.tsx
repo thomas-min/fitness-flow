@@ -3,7 +3,7 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { DayComponentType, useCalendarContext } from 'react-native-swipe-calendar';
 
-import { useIsCalendarDateMarked } from '../hooks/useCalendarStore';
+import { useIsCalendarDateMarked } from '../../hooks/useCalendarStore';
 
 export const CalendarDay: DayComponentType = ({
   date,

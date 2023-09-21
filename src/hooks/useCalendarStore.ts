@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { LayoutAnimation } from 'react-native';
 import { create } from 'zustand';
 
-import { TODAY } from '../../common/configs/dateTime';
+import { TODAY } from '../configs/dateTime';
 
 interface ICalendarStore {
   currentDate: Date;

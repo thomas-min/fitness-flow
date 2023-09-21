@@ -1,10 +1,10 @@
 import { Platform, UIManager } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Divider } from '@/modules/common/components/Divider';
-import { WorkoutCalendar } from '@/modules/workout/components/WorkoutCalendar';
-import { WorkoutExerciseList } from '@/modules/workout/components/WorkoutExerciseList';
-import { WorkoutScreenHeader } from '@/modules/workout/components/WorkoutScreenHeader';
+import { WorkoutCalendar } from '@/src/components/WorkoutCalendar';
+import { WorkoutExerciseList } from '@/src/components/WorkoutExerciseList';
+import { WorkoutScreenHeader } from '@/src/components/WorkoutScreenHeader';
+import { Divider } from '@/src/components/ui/Divider';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&

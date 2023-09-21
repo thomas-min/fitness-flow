@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { ScrollView, Text } from 'react-native';
 
-import { migrations } from '@/modules/common/db';
-import { DEFAULT_EXERCISES } from '@/modules/exercise/configs';
-import { IExercise, exerciseRepository } from '@/modules/exercise/models';
-import {
-  DEFAULT_ROUTINES,
-  DEFAULT_ROUTINE_EXERCISES,
-  DEFAULT_ROUTINE_EXERCISE_SETS,
-} from '@/modules/routine/configs';
+import { IExercise, exerciseRepository } from '@/src/db/exercise.model';
+import { DEFAULT_EXERCISES } from '@/src/db/exercise.seed';
 import {
   routineExerciseRepository,
   routineExerciseSetRepository,
   routineRepository,
-} from '@/modules/routine/models';
+} from '@/src/db/routine.model';
+import {
+  DEFAULT_ROUTINES,
+  DEFAULT_ROUTINE_EXERCISES,
+  DEFAULT_ROUTINE_EXERCISE_SETS,
+} from '@/src/db/routine.seed';
+import { migrations } from '@/src/db/schema';
 
 export default function TestScreen() {
   const [exercise, setExercise] = useState<IExercise[]>([]);

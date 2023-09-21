@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, Text, View, ViewStyle } from 'react-native';
 
 import Modal from './Modal';
-import { cn } from '../utils/cn';
+
+import { cn } from '@/src/utils/cn';
 
 interface IOption<T> {
   label: string;

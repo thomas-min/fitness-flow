@@ -1,4 +1,4 @@
-import { IExercise, TBodyPart } from '../models';
+import { IExercise, TBodyPart } from './exercise.model';
 
 export const BODY_PARTS: TBodyPart[] = [
   'chest',

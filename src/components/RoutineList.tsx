@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
 
-import { bulkUpdateRoutines, getRoutines } from '../utils';
+import { bulkUpdateRoutines, getRoutines } from '../db/routine.service';
 
 const routineListStyles = {
   container: {

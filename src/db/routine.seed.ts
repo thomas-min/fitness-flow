@@ -1,4 +1,4 @@
-import { IRoutine, IRoutineExercise, IRoutineExerciseSet } from '../models';
+import { IRoutine, IRoutineExercise, IRoutineExerciseSet } from './routine.model';
 
 export const DEFAULT_ROUTINES: IRoutine[] = [
   {

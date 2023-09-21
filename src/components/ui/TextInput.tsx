@@ -1,6 +1,6 @@
 import { TextInput as RNTextInput, TextInputProps, TextProps, Text } from 'react-native';
 
-import { cn } from '../utils/cn';
+import { cn } from '@/src/utils/cn';
 
 function TextInput(props: TextInputProps) {
   const { className, ...rest } = props;
