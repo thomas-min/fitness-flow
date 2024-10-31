@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { RecoilRoot } from 'recoil';
 import '../global.css';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -48,13 +49,15 @@ function RootLayoutNav() {
   return (
     <RecoilRoot>
       <ThemeProvider value={DefaultTheme}>
-        <StatusBar style="dark" />
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-          <Stack.Screen name="(stacks)/edit-exercise" options={{ headerShown: false }} />
-          <Stack.Screen name="(stacks)/edit-routine" options={{ headerShown: false }} />
-        </Stack>
+        <GestureHandlerRootView>
+          <StatusBar style="dark" />
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+            <Stack.Screen name="(stacks)/edit-exercise" options={{ headerShown: false }} />
+            <Stack.Screen name="(stacks)/edit-routine" options={{ headerShown: false }} />
+          </Stack>
+        </GestureHandlerRootView>
       </ThemeProvider>
     </RecoilRoot>
   );
