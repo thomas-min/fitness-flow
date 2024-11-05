@@ -4,8 +4,8 @@ import { Dispatch, SetStateAction } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
 
-import { IRoutineExerciseSet } from '../db/routine.model';
-import { getRoutine } from '../services/routine.service';
+import { IRoutineExerciseSet } from '@/src/db/routine.model';
+import { getRoutine } from '@/src/services/routine.service';
 
 import { TextInput } from '@/src/components/ui/TextInput';
 import { IExercise } from '@/src/db/exercise.model';

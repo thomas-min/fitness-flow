@@ -3,7 +3,7 @@ import { ko } from 'date-fns/locale';
 import { PlusIcon } from 'lucide-react-native';
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { useCalendarStore } from '../hooks/useCalendarStore';
+import { useCalendarStore } from '@/src/hooks/useCalendarStore';
 
 export const WorkoutScreenHeader = function WorkoutScreenHeader() {
   const currentDate = useCalendarStore((state) => state.currentDate);

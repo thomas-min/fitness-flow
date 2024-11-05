@@ -4,7 +4,7 @@ import { CheckCircle2Icon, CircleIcon } from 'lucide-react-native';
 import { Dispatch, SetStateAction, forwardRef, useCallback, useEffect, useState } from 'react';
 import { ListRenderItemInfo, Pressable, Text, View } from 'react-native';
 
-import { IExercise, exerciseRepository } from '../db/exercise.model';
+import { IExercise, exerciseRepository } from '@/src/db/exercise.model';
 
 import { BODY_PARTS_IN_KOREAN } from '@/src/db/exercise.seed';
 import { TRoutine } from '@/src/services/routine.service';

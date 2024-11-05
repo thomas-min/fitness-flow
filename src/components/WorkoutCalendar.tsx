@@ -7,7 +7,7 @@ import { CalendarDayLabel } from './ui/CalendarDayLabel';
 import { CalendarHeader } from './ui/CalendarHeader';
 
 import { CalendarDay } from '@/src/components/ui/CalendarDay';
-import { useCalendarStore } from '../hooks/useCalendarStore';
+import { useCalendarStore } from '@/src/hooks/useCalendarStore';
 
 export const WorkoutCalendar = forwardRef<CalendarImperativeApi, object>(
   function WorkoutCalendar(_, ref) {

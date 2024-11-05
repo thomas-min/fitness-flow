@@ -8,7 +8,7 @@ import {
   routineExerciseRepository,
   routineExerciseSetRepository,
   routineRepository,
-} from '../db/routine.model';
+} from '@/src/db/routine.model';
 
 import { exerciseRepository } from '@/src/db/exercise.model';
 
