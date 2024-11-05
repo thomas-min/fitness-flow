@@ -10,7 +10,7 @@ import { RoutineExerciseList } from '@/src/components/RoutineExerciseList';
 import { ExerciseBottomSheet } from '@/src/components/ExerciseBottomSheet';
 import { Divider } from '@/src/components/ui/Divider';
 import { TextInput } from '@/src/components/ui/TextInput';
-import { createRoutine, getRoutine, updateRoutine } from '@/src/services/routine.service';
+import { createRoutine, getRoutine, updateRoutine } from '@/src/db/routine.service';
 import { cn } from '@/src/utils/cn';
 
 type Routine = NonNullable<Awaited<ReturnType<typeof getRoutine>>>;

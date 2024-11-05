@@ -28,7 +28,7 @@ const queryClient = new QueryClient();
 
 export default function RootLayout() {
   const [fontLoaded, fontError] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require('@/assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
   });
   const { success: migrationSuccess, error: migrationError } = useMigrations(db, migrations);
