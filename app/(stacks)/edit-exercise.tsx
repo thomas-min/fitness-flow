@@ -9,7 +9,7 @@ import { Picker } from '@/src/components/ui/Picker';
 import { TextInput } from '@/src/components/ui/TextInput';
 import { IExercise, TBodyPart } from '@/src/db/exercise.model';
 import { BODY_PARTS_IN_KOREAN } from '@/src/db/exercise.seed';
-import { createExercise, getExercise, updateExercise } from '@/src/db/exercise.service';
+import { createExercise, getExercise, updateExercise } from '@/src/services/exercise.service';
 import { cn } from '@/src/utils/cn';
 
 if (Platform.OS === 'android') {

@@ -1,4 +1,3 @@
-import { get } from 'immer/dist/internal';
 import { create } from 'zustand';
 
 interface CalendarState {

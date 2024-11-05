@@ -7,7 +7,7 @@ import { ListRenderItemInfo, Pressable, Text, View } from 'react-native';
 import { IExercise, exerciseRepository } from '../db/exercise.model';
 
 import { BODY_PARTS_IN_KOREAN } from '@/src/db/exercise.seed';
-import { TRoutine } from '@/src/db/routine.service';
+import { TRoutine } from '@/src/services/routine.service';
 
 const snapPoints = ['50%'];
 const style = {
