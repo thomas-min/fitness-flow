@@ -3,12 +3,10 @@ import { ko } from 'date-fns/locale';
 import { PlusIcon } from 'lucide-react-native';
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { useRecoilValue } from 'recoil';
-
-import { currentDateState } from '../states/calendar';
+import { useCalendarStore } from '../hooks/useCalendarStore';
 
 export const WorkoutScreenHeader = function WorkoutScreenHeader() {
-  const currentDate = useRecoilValue(currentDateState);
+  const currentDate = useCalendarStore((state) => state.currentDate);
 
   return (
     <View className="flex-row items-center justify-between px-4 pt-2">

@@ -2,18 +2,16 @@ import { isSameMonth } from 'date-fns';
 import React, { forwardRef } from 'react';
 import { LayoutAnimation, View } from 'react-native';
 import Calendar, { CalendarImperativeApi } from 'react-native-swipe-calendar';
-import { useRecoilState } from 'recoil';
 
 import { CalendarDayLabel } from './ui/CalendarDayLabel';
 import { CalendarHeader } from './ui/CalendarHeader';
-import { currentDateState, selectedDateState } from '../states/calendar';
 
 import { CalendarDay } from '@/src/components/ui/CalendarDay';
+import { useCalendarStore } from '../hooks/useCalendarStore';
 
 export const WorkoutCalendar = forwardRef<CalendarImperativeApi, object>(
   function WorkoutCalendar(_, ref) {
-    const [currentDate, setCurrentDate] = useRecoilState(currentDateState);
-    const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
+    const { currentDate, setCurrentDate, selectedDate, setSelectedDate } = useCalendarStore();
 
     const handleDateSelect = (date: Date, { isSelected }: { isSelected: boolean }) => {
       if (isSelected) {
