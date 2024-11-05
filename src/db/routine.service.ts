@@ -1,6 +1,7 @@
 import { IQueryOptions } from 'expo-sqlite-orm';
 import { omit } from 'lodash-es';
 
+import { exerciseRepository } from '@/src/db/exercise.model';
 import {
   IRoutine,
   IRoutineExercise,
@@ -9,8 +10,6 @@ import {
   routineExerciseSetRepository,
   routineRepository,
 } from '@/src/db/routine.model';
-
-import { exerciseRepository } from '@/src/db/exercise.model';
 
 export type TRoutine = NonNullable<Awaited<ReturnType<typeof getRoutine>>>;
 

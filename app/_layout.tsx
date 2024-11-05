@@ -1,15 +1,16 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import '@/global.css';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
-import { db } from '@/src/db';
+
 import migrations from '@/drizzle/migrations';
+import { db } from '@/src/db';
 
 export {
   // Catch any errors thrown by the Layout component.

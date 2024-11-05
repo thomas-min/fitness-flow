@@ -5,9 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, Text, UIManager, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { RoutineExerciseList } from '@/src/components/RoutineExerciseList';
-
 import { ExerciseBottomSheet } from '@/src/components/ExerciseBottomSheet';
+import { RoutineExerciseList } from '@/src/components/RoutineExerciseList';
 import { Divider } from '@/src/components/ui/Divider';
 import { TextInput } from '@/src/components/ui/TextInput';
 import { createRoutine, getRoutine, updateRoutine } from '@/src/db/routine.service';
