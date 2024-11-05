@@ -6,6 +6,7 @@ module.exports = function (api) {
       // Required for expo-router
       'nativewind/babel',
       'react-native-reanimated/plugin',
+      ['inline-import', { extensions: ['.sql'] }],
     ],
   };
 };
